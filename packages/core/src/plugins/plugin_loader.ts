@@ -54,17 +54,17 @@ function _registerCorePlugins(): void {
  * 
  * @example
  * // Browser application
- * import { UtcpClient } from '@utcp/sdk';
- * import '@utcp/http';     // Auto-registers HTTP protocol
- * import '@utcp/text';     // Auto-registers text content protocol
+ * import { UtcpClient } from '@eli-golin/utcp-sdk';
+ * import '@eli-golin/utcp-http';     // Auto-registers HTTP protocol
+ * import '@eli-golin/utcp-text';     // Auto-registers text content protocol
  * 
  * @example
  * // Node.js application
- * import { UtcpClient } from '@utcp/sdk';
- * import '@utcp/http';
- * import '@utcp/mcp';
- * import '@utcp/file';
- * import '@utcp/dotenv-loader';
+ * import { UtcpClient } from '@eli-golin/utcp-sdk';
+ * import '@eli-golin/utcp-http';
+ * import '@eli-golin/utcp-mcp';
+ * import '@eli-golin/utcp-file';
+ * import '@eli-golin/utcp-dotenv-loader';
  */
 export function ensureCorePluginsInitialized(): void {
   if (!corePluginsInitialized && !initializing) {

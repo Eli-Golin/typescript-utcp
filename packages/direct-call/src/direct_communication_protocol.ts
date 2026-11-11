@@ -12,7 +12,7 @@ import {
   UtcpManual, 
   UtcpManualSerializer,
   IUtcpClient 
-} from '@utcp/sdk';
+} from '@eli-golin/utcp-sdk';
 import { DirectCallTemplate, DirectCallTemplateSchema } from './direct_call_template';
 
 /**

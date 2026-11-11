@@ -9,7 +9,7 @@
 import { test, expect, describe, spyOn } from 'bun:test';
 // Import the package index first so its register() side effect runs before the
 // converter validates the generated HttpCallTemplate.
-import '@utcp/http';
+import '@eli-golin/utcp-http';
 import { OpenApiConverter } from '../src/openapi_converter';
 
 describe('OpenApiConverter examples', () => {

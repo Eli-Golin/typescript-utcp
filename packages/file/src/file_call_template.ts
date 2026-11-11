@@ -1,8 +1,8 @@
 // packages/file/src/file_call_template.ts
 import { z } from 'zod';
-import { CallTemplate } from '@utcp/sdk';
-import { Auth, AuthSchema, AuthSerializer } from '@utcp/sdk';
-import { Serializer } from '@utcp/sdk';
+import { CallTemplate } from '@eli-golin/utcp-sdk';
+import { Auth, AuthSchema, AuthSerializer } from '@eli-golin/utcp-sdk';
+import { Serializer } from '@eli-golin/utcp-sdk';
 
 /**
  * REQUIRED
@@ -10,7 +10,7 @@ import { Serializer } from '@utcp/sdk';
  *
  * Reads UTCP manuals or tool definitions from local JSON/YAML files.
  * Useful for static tool configurations or environments where manuals are distributed as files.
- * For direct text content, use @utcp/text instead.
+ * For direct text content, use @eli-golin/utcp-text instead.
  *
  * Attributes:
  *     call_template_type: Always "file" for file call templates.

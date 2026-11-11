@@ -1,6 +1,6 @@
 // packages/dotenv-loader/src/dotenv_variable_loader.ts
 import { z } from 'zod';
-import { VariableLoader, Serializer } from '@utcp/sdk';
+import { VariableLoader, Serializer } from '@eli-golin/utcp-sdk';
 import { promises as fs } from 'fs';
 import { parse as parseDotEnv } from 'dotenv';
 import * as path from 'path';

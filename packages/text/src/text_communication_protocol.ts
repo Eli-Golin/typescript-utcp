@@ -6,8 +6,8 @@
  */
 // packages/text/src/text_communication_protocol.ts
 import * as yaml from 'js-yaml';
-import { CommunicationProtocol, RegisterManualResult, CallTemplate, UtcpManual, UtcpManualSerializer, IUtcpClient } from '@utcp/sdk';
-import { OpenApiConverter } from '@utcp/http';
+import { CommunicationProtocol, RegisterManualResult, CallTemplate, UtcpManual, UtcpManualSerializer, IUtcpClient } from '@eli-golin/utcp-sdk';
+import { OpenApiConverter } from '@eli-golin/utcp-http';
 import { TextCallTemplate, TextCallTemplateSchema } from './text_call_template';
 
 /**

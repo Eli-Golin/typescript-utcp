@@ -4,18 +4,18 @@ import { Subprocess } from "bun";
 import path from "path";
 import { writeFile, unlink } from "fs/promises";
 
-import { UtcpClient, CommunicationProtocol, RegisterManualResult, CallTemplate, UtcpManual, Tool, IUtcpClient } from "@utcp/sdk";
+import { UtcpClient, CommunicationProtocol, RegisterManualResult, CallTemplate, UtcpManual, Tool, IUtcpClient } from "@eli-golin/utcp-sdk";
 // Import protocol packages to register their serializers and communication protocols
-import "@utcp/http";
-import "@utcp/file";
-import "@utcp/mcp";
-import "@utcp/cli";
-import "@utcp/dotenv-loader";
+import "@eli-golin/utcp-http";
+import "@eli-golin/utcp-file";
+import "@eli-golin/utcp-mcp";
+import "@eli-golin/utcp-cli";
+import "@eli-golin/utcp-dotenv-loader";
 // Import types after registering the packages
-import type { McpCallTemplate } from "@utcp/mcp";
-import type { HttpCallTemplate } from "@utcp/http";
-import type { FileCallTemplate } from "@utcp/file";
-import type { CliCallTemplate } from "@utcp/cli";
+import type { McpCallTemplate } from "@eli-golin/utcp-mcp";
+import type { HttpCallTemplate } from "@eli-golin/utcp-http";
+import type { FileCallTemplate } from "@eli-golin/utcp-file";
+import type { CliCallTemplate } from "@eli-golin/utcp-cli";
 
 let httpManualServerProcess: Subprocess | null = null;
 let mcpStdioServerProcess: Subprocess | null = null;

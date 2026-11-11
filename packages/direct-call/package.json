@@ -1,16 +1,16 @@
 {
-  "name": "@utcp/direct-call",
-  "version": "1.1.1",
-  "description": "Direct callable functions plugin for UTCP",
+  "name": "@eli-golin/utcp-direct-call",
+  "version": "1.1.2",
+  "description": "Direct callable functions plugin for UTCP (maintained fork)",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
   "license": "MPL-2.0",
-  "author": "UTCP Contributors",
+  "author": "Eli Golin (fork of the work by UTCP Contributors)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/universal-tool-calling-protocol/typescript-utcp.git",
+    "url": "https://github.com/Eli-Golin/typescript-utcp",
     "directory": "packages/direct-call"
   },
   "keywords": [
@@ -45,12 +45,16 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "@utcp/sdk": "^1.1.0"
+    "@eli-golin/utcp-sdk": "^1.1.0"
   },
   "devDependencies": {
-    "@utcp/sdk": "^1.1.0",
+    "@eli-golin/utcp-sdk": "^1.1.0",
     "bun-types": "latest",
     "typescript": "^5.0.0",
     "@types/bun": "latest"
+  },
+  "homepage": "https://github.com/Eli-Golin/typescript-utcp/tree/main/packages/direct-call#readme",
+  "bugs": {
+    "url": "https://github.com/Eli-Golin/typescript-utcp/issues"
   }
 }

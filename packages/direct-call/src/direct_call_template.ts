@@ -1,6 +1,6 @@
 // packages/direct-call/src/direct_call_template.ts
 import { z } from 'zod';
-import { CallTemplate, Serializer } from '@utcp/sdk';
+import { CallTemplate, Serializer } from '@eli-golin/utcp-sdk';
 
 /**
  * Call template for direct callable functions.

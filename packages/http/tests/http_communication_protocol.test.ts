@@ -8,9 +8,9 @@ import {
   HttpCallTemplate,
   StreamableHttpCommunicationProtocol,
   SseCommunicationProtocol,
-} from "@utcp/http";
-import { ApiKeyAuth, BasicAuth, OAuth2Auth } from "@utcp/sdk";
-import { IUtcpClient } from "@utcp/sdk";
+} from "@eli-golin/utcp-http";
+import { ApiKeyAuth, BasicAuth, OAuth2Auth } from "@eli-golin/utcp-sdk";
+import { IUtcpClient } from "@eli-golin/utcp-sdk";
 
 // --- Test Server Setup ---
 let app: Express;

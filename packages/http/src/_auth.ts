@@ -3,7 +3,7 @@
 // Authentication helpers shared by the fetch-based SSE and Streamable HTTP
 // protocols, so a security fix (token URL validation, cache keying, header
 // injection checks) lands in one place.
-import { Auth, ApiKeyAuth, BasicAuth, OAuth2Auth, OAuth2UserAuth } from '@utcp/sdk';
+import { Auth, ApiKeyAuth, BasicAuth, OAuth2Auth, OAuth2UserAuth } from '@eli-golin/utcp-sdk';
 import { ensureSecureUrl, assertNoCrlf } from './_security';
 
 export interface AuthLogger {

@@ -1,4 +1,6 @@
-# @utcp/direct-call
+# @eli-golin/utcp-direct-call
+
+> Maintained fork of the UTCP TypeScript libraries, with fixes not yet released upstream. See [typescript-utcp](https://github.com/Eli-Golin/typescript-utcp).
 
 Direct callable functions plugin for UTCP (Universal Tool Calling Protocol).
 
@@ -14,7 +16,7 @@ This plugin allows you to register and call JavaScript/TypeScript functions dire
 ## Installation
 
 ```bash
-npm install @utcp/direct-call
+npm install @eli-golin/utcp-direct-call
 ```
 
 ## Usage
@@ -24,8 +26,8 @@ npm install @utcp/direct-call
 ### Using `addFunctionToUtcpDirectCall`
 
 ```typescript
-import { addFunctionToUtcpDirectCall } from '@utcp/direct-call';
-import { UtcpManual } from '@utcp/sdk';
+import { addFunctionToUtcpDirectCall } from '@eli-golin/utcp-direct-call';
+import { UtcpManual } from '@eli-golin/utcp-sdk';
 
 // Register a function that returns a UTCP manual
 const getMyManual = addFunctionToUtcpDirectCall('myManual', async (): Promise<UtcpManual> => {
@@ -64,8 +66,8 @@ addFunctionToUtcpDirectCall('greet', greet);
 ### Manual Registration
 
 ```typescript
-import { DirectCommunicationProtocol } from '@utcp/direct-call';
-import { UtcpManual } from '@utcp/sdk';
+import { DirectCommunicationProtocol } from '@eli-golin/utcp-direct-call';
+import { UtcpManual } from '@eli-golin/utcp-sdk';
 
 const protocol = new DirectCommunicationProtocol();
 

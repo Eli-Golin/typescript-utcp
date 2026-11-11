@@ -1,14 +1,14 @@
 // packages/http/tests/redirect_security.test.ts
 //
 // Pin the fixes for the redirect + OAuth2 token-URL hardening landing
-// in @utcp/http 1.1.4. Sister advisories to python-utcp's
+// in @eli-golin/utcp-http 1.1.4. Sister advisories to python-utcp's
 // GHSA-9qhg-99ww-9mqc (redirect SSRF) and GHSA-8cp3-qxj6-px34
 // (OAuth2 tokenUrl trust-boundary bypass).
 
 import { test, expect, describe } from 'bun:test';
 import { createServer, type Server, type IncomingMessage, type ServerResponse } from 'http';
 import { AddressInfo } from 'net';
-import '@utcp/http';
+import '@eli-golin/utcp-http';
 import { safeRequestWithRedirects } from '../src/_security';
 import { HttpCommunicationProtocol } from '../src/http_communication_protocol';
 import { HttpCallTemplate } from '../src/http_call_template';

@@ -4,12 +4,12 @@
  * Handles HTTP streaming with chunked transfer encoding for real-time data.
  */
 // packages/http/src/streamable_http_communication_protocol.ts
-import { CommunicationProtocol } from '@utcp/sdk';
-import { RegisterManualResult } from '@utcp/sdk';
-import { CallTemplate } from '@utcp/sdk';
-import { UtcpManual, UtcpManualSerializer } from '@utcp/sdk';
-import { OAuth2Auth } from '@utcp/sdk';
-import { IUtcpClient } from '@utcp/sdk';
+import { CommunicationProtocol } from '@eli-golin/utcp-sdk';
+import { RegisterManualResult } from '@eli-golin/utcp-sdk';
+import { CallTemplate } from '@eli-golin/utcp-sdk';
+import { UtcpManual, UtcpManualSerializer } from '@eli-golin/utcp-sdk';
+import { OAuth2Auth } from '@eli-golin/utcp-sdk';
+import { IUtcpClient } from '@eli-golin/utcp-sdk';
 import { StreamableHttpCallTemplate, StreamableHttpCallTemplateSchema } from './streamable_http_call_template';
 import { ensureSecureUrl, ensureLoopbackWasDeclared, assertNoCrlf, rejectRemoteLoopbackToolUrls } from './_security';
 import { applyAuth, finalizeAuthHeaders, fetchOAuth2Token, AuthLogger } from './_auth';

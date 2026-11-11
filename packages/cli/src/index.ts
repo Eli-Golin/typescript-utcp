@@ -1,5 +1,5 @@
 // packages/cli/src/index.ts
-import { CommunicationProtocol, CallTemplateSerializer } from '@utcp/sdk';
+import { CommunicationProtocol, CallTemplateSerializer } from '@eli-golin/utcp-sdk';
 import { CliCallTemplateSerializer } from './cli_call_template';
 import { CliCommunicationProtocol } from './cli_communication_protocol';
 

@@ -1,16 +1,16 @@
 {
-  "name": "@utcp/text",
-  "version": "1.1.0",
-  "description": "Text content protocol for UTCP - handles direct text content (browser-compatible)",
+  "name": "@eli-golin/utcp-text",
+  "version": "1.1.1",
+  "description": "Text content protocol for UTCP - handles direct text content (browser-compatible) (maintained fork)",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
   "license": "MPL-2.0",
-  "author": "UTCP Contributors",
+  "author": "Eli Golin (fork of the work by UTCP Contributors)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/universal-tool-calling-protocol/typescript-utcp.git",
+    "url": "https://github.com/Eli-Golin/typescript-utcp",
     "directory": "packages/text"
   },
   "keywords": [
@@ -38,12 +38,16 @@
     }
   },
   "dependencies": {
-    "@utcp/http": "^1.1.0",
-    "@utcp/sdk": "^1.1.0",
+    "@eli-golin/utcp-http": "^1.1.0",
+    "@eli-golin/utcp-sdk": "^1.1.0",
     "js-yaml": "^4.1.0"
   },
   "devDependencies": {
     "bun-types": "latest",
     "typescript": "^5.0.0"
+  },
+  "homepage": "https://github.com/Eli-Golin/typescript-utcp/tree/main/packages/text#readme",
+  "bugs": {
+    "url": "https://github.com/Eli-Golin/typescript-utcp/issues"
   }
 }

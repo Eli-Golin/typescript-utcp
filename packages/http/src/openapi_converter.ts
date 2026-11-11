@@ -18,12 +18,12 @@
  * defined by OpenAPI specifications, providing a bridge between OpenAPI and UTCP.
  */
 // packages/http/src/openapi_converter.ts
-import { Tool, JsonSchemaSchema, JsonSchema, JsonType } from '@utcp/sdk';
-import { UtcpManual, UtcpManualSerializer } from '@utcp/sdk';
-import { Auth } from '@utcp/sdk';
-import { ApiKeyAuth } from '@utcp/sdk';
-import { BasicAuth } from '@utcp/sdk';
-import { OAuth2Auth } from '@utcp/sdk';
+import { Tool, JsonSchemaSchema, JsonSchema, JsonType } from '@eli-golin/utcp-sdk';
+import { UtcpManual, UtcpManualSerializer } from '@eli-golin/utcp-sdk';
+import { Auth } from '@eli-golin/utcp-sdk';
+import { ApiKeyAuth } from '@eli-golin/utcp-sdk';
+import { BasicAuth } from '@eli-golin/utcp-sdk';
+import { OAuth2Auth } from '@eli-golin/utcp-sdk';
 import { HttpCallTemplate } from './http_call_template';
 import { ensureSecureUrl, isLoopbackUrl, urlTemplateHostIsLoopback } from './_security';
 

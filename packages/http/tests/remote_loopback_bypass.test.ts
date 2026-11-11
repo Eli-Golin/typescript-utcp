@@ -1,7 +1,7 @@
 // packages/http/tests/remote_loopback_bypass.test.ts
 //
 // The loopback trust boundary, closed where the earlier fixes left it open
-// (reported against @utcp/http 1.1.13 as bypasses of GHSA-r8j5-8747-88cm):
+// (reported against @eli-golin/utcp-http 1.1.13 as bypasses of GHSA-r8j5-8747-88cm):
 //
 //   1. A placeholder in the host of a tool URL (`http://{host}:7777`) is not
 //      loopback when the manual or spec is registered, and is loopback once
@@ -21,7 +21,7 @@
 import { test, expect, describe, afterEach } from 'bun:test';
 import { createServer, type Server, type IncomingMessage, type ServerResponse } from 'http';
 import { AddressInfo } from 'net';
-import '@utcp/http';
+import '@eli-golin/utcp-http';
 import {
   urlTemplateHostIsLoopback,
   ensureLoopbackWasDeclared,

@@ -13,5 +13,5 @@ export default defineConfig({
   sourcemap: true,
   clean: true,
   outDir: 'dist',
-  external: ['@utcp/sdk', '@modelcontextprotocol/sdk', 'axios'],
+  external: ['@eli-golin/utcp-sdk', '@modelcontextprotocol/sdk', 'axios'],
 });

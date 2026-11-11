@@ -2,7 +2,7 @@
  * File Communication Protocol plugin for UTCP.
  */
 // packages/file/src/index.ts
-import { CommunicationProtocol, CallTemplateSerializer, ensureCorePluginsInitialized } from '@utcp/sdk';
+import { CommunicationProtocol, CallTemplateSerializer, ensureCorePluginsInitialized } from '@eli-golin/utcp-sdk';
 import { FileCallTemplateSerializer } from './file_call_template';
 import { FileCommunicationProtocol } from './file_communication_protocol';
 

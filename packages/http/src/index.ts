@@ -3,7 +3,7 @@
  * Includes HTTP, Streamable HTTP, and SSE (Server-Sent Events) protocols.
  */
 // packages/http/src/index.ts
-import { CommunicationProtocol, CallTemplateSerializer, ensureCorePluginsInitialized } from '@utcp/sdk';
+import { CommunicationProtocol, CallTemplateSerializer, ensureCorePluginsInitialized } from '@eli-golin/utcp-sdk';
 import { HttpCallTemplateSerializer } from './http_call_template';
 import { StreamableHttpCallTemplateSerializer } from './streamable_http_call_template';
 import { SseCallTemplateSerializer } from './sse_call_template';

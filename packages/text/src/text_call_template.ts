@@ -1,7 +1,7 @@
 // packages/text/src/text_call_template.ts
 import { z } from 'zod';
-import { CallTemplate, Auth, AuthSchema, AuthSerializer } from '@utcp/sdk';
-import { Serializer } from '@utcp/sdk';
+import { CallTemplate, Auth, AuthSchema, AuthSerializer } from '@eli-golin/utcp-sdk';
+import { Serializer } from '@eli-golin/utcp-sdk';
 
 /**
  * Text call template for UTCP client.

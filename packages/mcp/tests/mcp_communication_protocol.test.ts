@@ -4,7 +4,7 @@ import { Subprocess } from "bun";
 import path from "path";
 import { McpCommunicationProtocol, McpCallTemplate } from "../src/index";
 import { McpHttpServerSchema } from "../src/mcp_call_template";
-import { IUtcpClient } from "@utcp/sdk";
+import { IUtcpClient } from "@eli-golin/utcp-sdk";
 import { Client as McpSdkClient } from "@modelcontextprotocol/sdk/client/index.js";
 import { ErrorCode, McpError } from "@modelcontextprotocol/sdk/types.js";
 import { StreamableHTTPError } from "@modelcontextprotocol/sdk/client/streamableHttp.js";

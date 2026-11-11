@@ -1,4 +1,6 @@
-# @utcp/dotenv-loader
+# @eli-golin/utcp-dotenv-loader
+
+> Maintained fork of the UTCP TypeScript libraries, with fixes not yet released upstream. See [typescript-utcp](https://github.com/Eli-Golin/typescript-utcp).
 
 DotEnv Variable Loader plugin for the Universal Tool Calling Protocol (UTCP).
 
@@ -9,7 +11,7 @@ This plugin provides support for loading environment variables from `.env` files
 ## Installation
 
 ```bash
-npm install @utcp/dotenv-loader
+npm install @eli-golin/utcp-dotenv-loader
 ```
 
 ## Usage
@@ -17,8 +19,8 @@ npm install @utcp/dotenv-loader
 The plugin automatically registers itself when imported:
 
 ```typescript
-import '@utcp/dotenv-loader';
-import { UtcpClient } from '@utcp/sdk';
+import '@eli-golin/utcp-dotenv-loader';
+import { UtcpClient } from '@eli-golin/utcp-sdk';
 
 // Now you can use dotenv variable loaders in your UTCP configuration
 const config = {

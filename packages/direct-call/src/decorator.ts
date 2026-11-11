@@ -1,5 +1,5 @@
 // packages/direct-call/src/decorator.ts
-import { CommunicationProtocol, ensureCorePluginsInitialized } from '@utcp/sdk';
+import { CommunicationProtocol, ensureCorePluginsInitialized } from '@eli-golin/utcp-sdk';
 import { DirectCommunicationProtocol, Callable } from './direct_communication_protocol';
 
 /**
@@ -95,7 +95,7 @@ export function registerCallable(name: string, callable: Callable): void {
   if (protocol) {
     protocol.registerCallable(name, callable);
   } else {
-    throw new Error('DirectCommunicationProtocol is not registered. Did you import @utcp/direct-call?');
+    throw new Error('DirectCommunicationProtocol is not registered. Did you import @eli-golin/utcp-direct-call?');
   }
 }
 
@@ -114,6 +114,6 @@ export function unregisterCallable(name: string): void {
   if (protocol) {
     protocol.unregisterCallable(name);
   } else {
-    throw new Error('DirectCommunicationProtocol is not registered. Did you import @utcp/direct-call?');
+    throw new Error('DirectCommunicationProtocol is not registered. Did you import @eli-golin/utcp-direct-call?');
   }
 }

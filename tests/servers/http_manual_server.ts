@@ -1,6 +1,6 @@
 // packages/core/tests/http_manual_server.ts
-import { Tool } from "@utcp/sdk";
-import { HttpCallTemplate } from "@utcp/http";
+import { Tool } from "@eli-golin/utcp-sdk";
+import { HttpCallTemplate } from "@eli-golin/utcp-http";
 
 const manual = {
   utcp_version: "1.0.1",

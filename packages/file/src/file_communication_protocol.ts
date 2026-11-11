@@ -3,14 +3,14 @@
  *
  * This protocol reads UTCP manuals (or OpenAPI specs) from local files to register
  * tools. It does not maintain any persistent connections.
- * For direct text content, use @utcp/text instead.
+ * For direct text content, use @eli-golin/utcp-text instead.
  */
 // packages/file/src/file_communication_protocol.ts
 import { promises as fs } from 'fs';
 import * as path from 'path';
 import * as yaml from 'js-yaml';
-import { CommunicationProtocol, RegisterManualResult, CallTemplate, UtcpManual, UtcpManualSerializer, IUtcpClient } from '@utcp/sdk';
-import { OpenApiConverter } from '@utcp/http';
+import { CommunicationProtocol, RegisterManualResult, CallTemplate, UtcpManual, UtcpManualSerializer, IUtcpClient } from '@eli-golin/utcp-sdk';
+import { OpenApiConverter } from '@eli-golin/utcp-http';
 import { FileCallTemplate, FileCallTemplateSchema } from './file_call_template';
 
 /**

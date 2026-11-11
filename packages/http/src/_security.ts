@@ -334,7 +334,7 @@ export function rejectRemoteLoopbackToolUrls(
  * boundary inside UTCP means a transport swap, polyfill, or future
  * runtime change can't silently regress.
  *
- * Centralised here so every protocol in `@utcp/http` (http, sse,
+ * Centralised here so every protocol in `@eli-golin/utcp-http` (http, sse,
  * streamable_http) shares a single implementation and future fixes
  * apply consistently. Mirrors `utcp_http._security._assert_no_crlf`
  * from the Python reference implementation.

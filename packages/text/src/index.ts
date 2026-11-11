@@ -3,7 +3,7 @@
  * Handles direct text content (browser-compatible).
  */
 // packages/text/src/index.ts
-import { CommunicationProtocol, CallTemplateSerializer, ensureCorePluginsInitialized } from '@utcp/sdk';
+import { CommunicationProtocol, CallTemplateSerializer, ensureCorePluginsInitialized } from '@eli-golin/utcp-sdk';
 import { TextCallTemplateSerializer } from './text_call_template';
 import { TextCommunicationProtocol } from './text_communication_protocol';
 

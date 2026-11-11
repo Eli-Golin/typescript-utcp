@@ -1,6 +1,8 @@
-# @utcp/cli: Command Line Interface Communication Protocol for UTCP
+# @eli-golin/utcp-cli: Command Line Interface Communication Protocol for UTCP
 
-The `@utcp/cli` package enables the `UtcpClient` to interact with command-line tools and programs as UTCP tool providers. This plugin provides a cross-platform way to execute shell commands, scripts, and CLI utilities with full support for multi-step workflows, environment variables, and output chaining.
+> Maintained fork of the UTCP TypeScript libraries, with fixes not yet released upstream. See [typescript-utcp](https://github.com/Eli-Golin/typescript-utcp).
+
+The `@eli-golin/utcp-cli` package enables the `UtcpClient` to interact with command-line tools and programs as UTCP tool providers. This plugin provides a cross-platform way to execute shell commands, scripts, and CLI utilities with full support for multi-step workflows, environment variables, and output chaining.
 
 ## Features
 
@@ -20,23 +22,23 @@ The `@utcp/cli` package enables the `UtcpClient` to interact with command-line t
 ## Installation
 
 ```bash
-bun add @utcp/cli @utcp/sdk
+bun add @eli-golin/utcp-cli @eli-golin/utcp-sdk
 
 # Or using npm
-npm install @utcp/cli @utcp/sdk
+npm install @eli-golin/utcp-cli @eli-golin/utcp-sdk
 ```
 
-Note: `@utcp/sdk` is a peer dependency.
+Note: `@eli-golin/utcp-sdk` is a peer dependency.
 
 ## Usage
 
-The CLI plugin registers automatically when you import it—no manual registration needed. Simply import from `@utcp/cli` to enable CLI support.
+The CLI plugin registers automatically when you import it—no manual registration needed. Simply import from `@eli-golin/utcp-cli` to enable CLI support.
 
 ```typescript
 // From your application's entry point
 
-import { UtcpClient } from '@utcp/sdk';
-import { CliCallTemplateSerializer } from '@utcp/cli';
+import { UtcpClient } from '@eli-golin/utcp-sdk';
+import { CliCallTemplateSerializer } from '@eli-golin/utcp-cli';
 
 async function main() {
   // Define a CLI CallTemplate for single command execution

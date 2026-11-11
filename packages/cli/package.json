@@ -1,16 +1,16 @@
 {
-  "name": "@utcp/cli",
-  "version": "1.1.3",
-  "description": "CLI utilities for UTCP",
+  "name": "@eli-golin/utcp-cli",
+  "version": "1.1.4",
+  "description": "CLI utilities for UTCP (maintained fork)",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
   "license": "MPL-2.0",
-  "author": "UTCP Contributors",
+  "author": "Eli Golin (fork of the work by UTCP Contributors)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/universal-tool-calling-protocol/typescript-utcp.git",
+    "url": "https://github.com/Eli-Golin/typescript-utcp",
     "directory": "packages/cli"
   },
   "keywords": [
@@ -43,11 +43,15 @@
     }
   },
   "dependencies": {
-    "@utcp/sdk": "^1.1.0"
+    "@eli-golin/utcp-sdk": "^1.1.0"
   },
   "devDependencies": {
     "bun-types": "latest",
     "typescript": "^5.0.0",
     "@types/bun": "latest"
+  },
+  "homepage": "https://github.com/Eli-Golin/typescript-utcp/tree/main/packages/cli#readme",
+  "bugs": {
+    "url": "https://github.com/Eli-Golin/typescript-utcp/issues"
   }
 }

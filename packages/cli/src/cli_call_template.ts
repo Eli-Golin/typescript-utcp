@@ -1,7 +1,7 @@
 // packages/cli/src/cli_call_template.ts
 import { z } from 'zod';
-import { CallTemplate } from '@utcp/sdk';
-import { Serializer } from '@utcp/sdk';
+import { CallTemplate } from '@eli-golin/utcp-sdk';
+import { Serializer } from '@eli-golin/utcp-sdk';
 
 /**
  * REQUIRED
@@ -30,7 +30,7 @@ import { Serializer } from '@utcp/sdk';
  *         placeholder splitting into multiple flags (e.g.
  *         `UTCP_ARG_flags_UTCP_END` -> `--verbose --debug`) must now
  *         use one placeholder per intended flag. This change ships
- *         with @utcp/cli 1.1.1.
+ *         with @eli-golin/utcp-cli 1.1.1.
  *
  *         PowerShell limitation: a placeholder appearing inside a
  *         single-quoted PowerShell string (`'...'`) will throw at
@@ -114,7 +114,7 @@ export const CommandStepSchema: z.ZodType<CommandStep> = z.object({
  * 
  * Example: `echo "Previous result: $CMD_0_OUTPUT"`
  *
- * **Argument Substitution (@utcp/cli >= 1.1.1):**
+ * **Argument Substitution (@eli-golin/utcp-cli >= 1.1.1):**
  * `UTCP_ARG_argname_UTCP_END` placeholders are replaced with a
  * context-aware shell variable reference (`"$VAR"` outside quotes,
  * `${VAR}` inside double quotes, an adjacent-quote concat trick inside
@@ -132,7 +132,7 @@ export const CommandStepSchema: z.ZodType<CommandStep> = z.object({
  * expand variables, so a placeholder inside `'...'` on Windows raises
  * a build-time error; use a double-quoted string instead.
  *
- * **Subprocess Environment (@utcp/cli >= 1.1.1):**
+ * **Subprocess Environment (@eli-golin/utcp-cli >= 1.1.1):**
  * The CLI subprocess no longer inherits the full host environment.
  * Inheritance is controlled by `inherit_env_vars`:
  *   - Omitted / `null`: a built-in default allowlist of host variables

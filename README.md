@@ -1,7 +1,13 @@
+<p align="center"><img src="assets/logo.svg" alt="typescript-utcp" width="640"></p>
+
 # Universal Tool Calling Protocol (UTCP) for TypeScript
 
+> **Maintained fork.** This is a fork of [universal-tool-calling-protocol/typescript-utcp](https://github.com/universal-tool-calling-protocol/typescript-utcp). `main` holds our changes and `follower-of-upstream` mirrors the upstream `main`. It adds two fixes that are not released upstream yet: post-processors from the config keep their settings (upstream PR [#61](https://github.com/universal-tool-calling-protocol/typescript-utcp/pull/61)), and the CLI protocol reports failed commands and missing arguments (PR [#62](https://github.com/universal-tool-calling-protocol/typescript-utcp/pull/62)). We will drop the fork's changes once they are merged and released.
+>
+> The packages are published under the `@eli-golin` scope: `@utcp/sdk` is `@eli-golin/utcp-sdk`, `@utcp/http` is `@eli-golin/utcp-http`, and so on for `cli`, `mcp`, `text`, `file`, `direct-call` and `dotenv-loader`. Use the whole set together, so that there is only one copy of the SDK.
+
 [![Follow Org](https://img.shields.io/github/followers/universal-tool-calling-protocol?label=Follow%20Org&logo=github)](https://github.com/universal-tool-calling-protocol)
-[![NPM version](https://img.shields.io/npm/v/@utcp/sdk.svg)](https://www.npmjs.com/package/@utcp/sdk)
+[![NPM version](https://img.shields.io/npm/v/@eli-golin/utcp-sdk.svg)](https://www.npmjs.com/package/@eli-golin/utcp-sdk)
 [![License](https://img.shields.io/github/license/universal-tool-calling-protocol/python-utcp)](https://github.com/universal-tool-calling-protocol/typescript-utcp/blob/main/LICENSE)
 [![CDTM S23](https://img.shields.io/badge/CDTM-S23-0b84f3)](https://cdtm.com/)
 
@@ -29,13 +35,13 @@ Install UTCP packages from npm:
 
 ```bash
 # Install core SDK and desired protocol plugins
-npm install @utcp/sdk @utcp/http @utcp/mcp @utcp/text @utcp/file
+npm install @eli-golin/utcp-sdk @eli-golin/utcp-http @eli-golin/utcp-mcp @eli-golin/utcp-text @eli-golin/utcp-file
 
 # Optional: Add dotenv variable loader for Node.js
-npm install @utcp/dotenv-loader
+npm install @eli-golin/utcp-dotenv-loader
 
 # Or using bun
-bun add @utcp/sdk @utcp/http @utcp/mcp @utcp/text @utcp/file
+bun add @eli-golin/utcp-sdk @eli-golin/utcp-http @eli-golin/utcp-mcp @eli-golin/utcp-text @eli-golin/utcp-file
 ```
 
 ### For Development
@@ -61,8 +67,8 @@ bun run build
 Plugins are **automatically registered** when you import the UtcpClient—no manual registration needed!
 
 ```typescript
-import { UtcpClient } from '@utcp/sdk';
-import { HttpCallTemplateSerializer } from '@utcp/http';
+import { UtcpClient } from '@eli-golin/utcp-sdk';
+import { HttpCallTemplateSerializer } from '@eli-golin/utcp-http';
 
 async function main() {
   // Create client - plugins auto-register
@@ -99,10 +105,10 @@ main().catch(console.error);
 ### Working with Multiple Protocols
 
 ```typescript
-import { UtcpClient } from '@utcp/sdk';
-import { HttpCallTemplateSerializer } from '@utcp/http';
-import { McpCallTemplateSerializer } from '@utcp/mcp';
-import { FileCallTemplateSerializer } from '@utcp/file';
+import { UtcpClient } from '@eli-golin/utcp-sdk';
+import { HttpCallTemplateSerializer } from '@eli-golin/utcp-http';
+import { McpCallTemplateSerializer } from '@eli-golin/utcp-mcp';
+import { FileCallTemplateSerializer } from '@eli-golin/utcp-file';
 
 async function main() {
   // Create serializers for each protocol
@@ -270,7 +276,7 @@ Variables are **namespace-isolated** by manual name to prevent variable leakage 
 // For a manual named "github_api", variables are accessed as:
 // ${VARIABLE} -> resolved from "github__api_VARIABLE"
 
-import { HttpCallTemplateSerializer } from '@utcp/http';
+import { HttpCallTemplateSerializer } from '@eli-golin/utcp-http';
 
 const serializer = new HttpCallTemplateSerializer();
 const githubTemplate = serializer.validateDict({
@@ -325,7 +331,7 @@ const client = await UtcpClient.create(process.cwd(), {
 Supports RESTful APIs with automatic OpenAPI specification conversion:
 
 ```typescript
-import { HttpCallTemplateSerializer } from '@utcp/http';
+import { HttpCallTemplateSerializer } from '@eli-golin/utcp-http';
 
 const serializer = new HttpCallTemplateSerializer();
 const weatherTemplate = serializer.validateDict({
@@ -357,7 +363,7 @@ const weatherTemplate = serializer.validateDict({
 Connect to Model Context Protocol servers:
 
 ```typescript
-import { McpCallTemplateSerializer } from '@utcp/mcp';
+import { McpCallTemplateSerializer } from '@eli-golin/utcp-mcp';
 
 const serializer = new McpCallTemplateSerializer();
 const mcpTemplate = serializer.validateDict({
@@ -390,7 +396,7 @@ const mcpTemplate = serializer.validateDict({
 Handle direct text/string content (browser-compatible):
 
 ```typescript
-import { TextCallTemplateSerializer } from '@utcp/text';
+import { TextCallTemplateSerializer } from '@eli-golin/utcp-text';
 
 const serializer = new TextCallTemplateSerializer();
 const textTemplate = serializer.validateDict({
@@ -409,7 +415,7 @@ const textTemplate = serializer.validateDict({
 Load tools from local JSON/YAML files or OpenAPI specs (Node.js only):
 
 ```typescript
-import { FileCallTemplateSerializer } from '@utcp/file';
+import { FileCallTemplateSerializer } from '@eli-golin/utcp-file';
 
 const serializer = new FileCallTemplateSerializer();
 const fileTemplate = serializer.validateDict({
@@ -425,7 +431,7 @@ const fileTemplate = serializer.validateDict({
 Execute command-line tools:
 
 ```typescript
-import { CliCallTemplateSerializer } from '@utcp/cli';
+import { CliCallTemplateSerializer } from '@eli-golin/utcp-cli';
 
 const serializer = new CliCallTemplateSerializer();
 const cliTemplate = serializer.validateDict({
@@ -535,14 +541,14 @@ typescript-utcp/
 ```
 
 Each package is independently published to npm:
-- `@utcp/sdk` - Core SDK library (required)
-- `@utcp/http` - HTTP protocol support
-- `@utcp/mcp` - MCP protocol support
-- `@utcp/text` - Direct text/string content (browser-compatible)
-- `@utcp/file` - File system operations (Node.js only)
-- `@utcp/dotenv-loader` - DotEnv variable loader (Node.js only)
-- `@utcp/direct-call` - Direct function call protocol
-- `@utcp/cli` - Command-line tools
+- `@eli-golin/utcp-sdk` - Core SDK library (required)
+- `@eli-golin/utcp-http` - HTTP protocol support
+- `@eli-golin/utcp-mcp` - MCP protocol support
+- `@eli-golin/utcp-text` - Direct text/string content (browser-compatible)
+- `@eli-golin/utcp-file` - File system operations (Node.js only)
+- `@eli-golin/utcp-dotenv-loader` - DotEnv variable loader (Node.js only)
+- `@eli-golin/utcp-direct-call` - Direct function call protocol
+- `@eli-golin/utcp-cli` - Command-line tools
 
 ## Development & Testing
 
@@ -585,7 +591,7 @@ bun run publish:mcp
 Implement custom storage backends:
 
 ```typescript
-import { ConcurrentToolRepository } from '@utcp/sdk';
+import { ConcurrentToolRepository } from '@eli-golin/utcp-sdk';
 
 class RedisToolRepository implements ConcurrentToolRepository {
   // Implement required methods
@@ -600,7 +606,7 @@ class RedisToolRepository implements ConcurrentToolRepository {
 Implement custom tool search algorithms:
 
 ```typescript
-import { ToolSearchStrategy } from '@utcp/sdk';
+import { ToolSearchStrategy } from '@eli-golin/utcp-sdk';
 
 class SemanticSearchStrategy implements ToolSearchStrategy {
   async searchTools(

@@ -9,7 +9,7 @@
 import { test, expect, describe } from 'bun:test';
 // Import the package index first so its register() side effect runs before
 // the converter tries to validate the generated HttpCallTemplate.
-import '@utcp/http';
+import '@eli-golin/utcp-http';
 import { isSecureUrl, isLoopbackUrl, ensureSecureUrl } from '../src/_security';
 
 // ---------------------------------------------------------------------------

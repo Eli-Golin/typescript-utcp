@@ -18,12 +18,12 @@
  *     should only be used with trusted tools.
  */
 // packages/cli/src/cli_communication_protocol.ts
-import { CommunicationProtocol, UtcpManualSchema, UtcpManualSerializer } from '@utcp/sdk';
-import { RegisterManualResult } from '@utcp/sdk';
-import { CallTemplate } from '@utcp/sdk';
-import { UtcpManual } from '@utcp/sdk';
-import { Tool } from '@utcp/sdk';
-import { IUtcpClient } from '@utcp/sdk';
+import { CommunicationProtocol, UtcpManualSchema, UtcpManualSerializer } from '@eli-golin/utcp-sdk';
+import { RegisterManualResult } from '@eli-golin/utcp-sdk';
+import { CallTemplate } from '@eli-golin/utcp-sdk';
+import { UtcpManual } from '@eli-golin/utcp-sdk';
+import { Tool } from '@eli-golin/utcp-sdk';
+import { IUtcpClient } from '@eli-golin/utcp-sdk';
 import { CliCallTemplate, CliCallTemplateSchema, CommandStep } from './cli_call_template';
 import { spawn, ChildProcess } from 'child_process';
 import { clearTimeout } from 'timers';

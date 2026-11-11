@@ -1,8 +1,8 @@
 // packages/http/src/http_call_template.ts
 import { z } from 'zod';
-import { Auth, AuthSchema, AuthSerializer } from '@utcp/sdk';
-import { CallTemplate } from '@utcp/sdk';
-import { Serializer } from '@utcp/sdk';
+import { Auth, AuthSchema, AuthSerializer } from '@eli-golin/utcp-sdk';
+import { CallTemplate } from '@eli-golin/utcp-sdk';
+import { Serializer } from '@eli-golin/utcp-sdk';
 
 /**
  * REQUIRED

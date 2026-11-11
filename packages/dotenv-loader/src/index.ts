@@ -3,7 +3,7 @@
  * Provides support for loading environment variables from .env files.
  */
 // packages/dotenv-loader/src/index.ts
-import { VariableLoaderSerializer, ensureCorePluginsInitialized } from '@utcp/sdk';
+import { VariableLoaderSerializer, ensureCorePluginsInitialized } from '@eli-golin/utcp-sdk';
 import { DotEnvVariableLoaderSerializer } from './dotenv_variable_loader';
 
 /**

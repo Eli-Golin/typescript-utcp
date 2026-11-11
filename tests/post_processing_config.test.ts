@@ -1,6 +1,6 @@
 import { describe, test, expect } from "bun:test";
-import { UtcpClient, UtcpClientConfigSerializer } from "@utcp/sdk";
-import type { CallTemplate, Tool } from "@utcp/sdk";
+import { UtcpClient, UtcpClientConfigSerializer } from "@eli-golin/utcp-sdk";
+import type { CallTemplate, Tool } from "@eli-golin/utcp-sdk";
 
 const postProcessing = [
   { tool_post_processor_type: "filter_dict", exclude_keys: ["secret"], only_include_manuals: ["demo"] },

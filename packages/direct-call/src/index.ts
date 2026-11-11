@@ -2,7 +2,7 @@
  * Direct Call Communication Protocol plugin for UTCP.
  */
 // packages/direct-call/src/index.ts
-import { CommunicationProtocol, CallTemplateSerializer, ensureCorePluginsInitialized } from '@utcp/sdk';
+import { CommunicationProtocol, CallTemplateSerializer, ensureCorePluginsInitialized } from '@eli-golin/utcp-sdk';
 import { DirectCallTemplateSerializer } from './direct_call_template';
 import { DirectCommunicationProtocol } from './direct_communication_protocol';
 import { registerPendingCallables } from './decorator';

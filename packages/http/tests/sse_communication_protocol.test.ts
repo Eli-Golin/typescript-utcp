@@ -3,8 +3,8 @@ import { test, expect, describe, beforeAll, afterAll, spyOn } from "bun:test";
 import express, { Express } from 'express';
 import { Server } from 'http';
 // Import from package index to trigger auto-registration
-import { SseCommunicationProtocol, SseCallTemplate, SseProtocolError } from "@utcp/http";
-import { IUtcpClient } from "@utcp/sdk";
+import { SseCommunicationProtocol, SseCallTemplate, SseProtocolError } from "@eli-golin/utcp-http";
+import { IUtcpClient } from "@eli-golin/utcp-sdk";
 
 // --- Test Server Setup ---
 let app: Express;

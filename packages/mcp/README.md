@@ -1,6 +1,8 @@
-# @utcp/mcp: Model Context Protocol (MCP) Communication Protocol Plugin for UTCP
+# @eli-golin/utcp-mcp: Model Context Protocol (MCP) Communication Protocol Plugin for UTCP
 
-The `@utcp/mcp` package enables the `UtcpClient` to interact with tools defined and served via the Model Context Protocol (MCP). This plugin provides interoperability with existing MCP servers, supporting both `stdio` (local process) and `http` (streamable HTTP) transports, with enhanced session management and resilience.
+> Maintained fork of the UTCP TypeScript libraries, with fixes not yet released upstream. See [typescript-utcp](https://github.com/Eli-Golin/typescript-utcp).
+
+The `@eli-golin/utcp-mcp` package enables the `UtcpClient` to interact with tools defined and served via the Model Context Protocol (MCP). This plugin provides interoperability with existing MCP servers, supporting both `stdio` (local process) and `http` (streamable HTTP) transports, with enhanced session management and resilience.
 
 ## Features
 
@@ -23,23 +25,23 @@ The `@utcp/mcp` package enables the `UtcpClient` to interact with tools defined 
 ## Installation
 
 ```bash
-bun add @utcp/mcp @utcp/sdk
+bun add @eli-golin/utcp-mcp @eli-golin/utcp-sdk
 
 # Or using npm
-npm install @utcp/mcp @utcp/sdk
+npm install @eli-golin/utcp-mcp @eli-golin/utcp-sdk
 ```
 
-Note: `@utcp/sdk` is a peer dependency. The MCP SDK dependencies (`@modelcontextprotocol/sdk` and `axios`) are included automatically.
+Note: `@eli-golin/utcp-sdk` is a peer dependency. The MCP SDK dependencies (`@modelcontextprotocol/sdk` and `axios`) are included automatically.
 
 ## Usage
 
-The MCP plugin registers automatically when you import it—no manual registration needed. Simply import from `@utcp/mcp` to enable MCP support.
+The MCP plugin registers automatically when you import it—no manual registration needed. Simply import from `@eli-golin/utcp-mcp` to enable MCP support.
 
 ```typescript
 // From your application's entry point
 
-import { UtcpClient } from '@utcp/sdk';
-import { McpCallTemplateSerializer } from '@utcp/mcp';
+import { UtcpClient } from '@eli-golin/utcp-sdk';
+import { McpCallTemplateSerializer } from '@eli-golin/utcp-mcp';
 import * as path from 'path';
 
 async function main() {
@@ -157,7 +159,7 @@ const client = await UtcpClient.create(process.cwd(), {
 
 ### Child Process stderr
 
-Stdio MCP servers often write banners, telemetry notices and auth chatter to stderr, multiplied by every server you federate. `@utcp/mcp` therefore discards the child's stderr by default. To see it while debugging a server that fails to start, opt back in for the host process:
+Stdio MCP servers often write banners, telemetry notices and auth chatter to stderr, multiplied by every server you federate. `@eli-golin/utcp-mcp` therefore discards the child's stderr by default. To see it while debugging a server that fails to start, opt back in for the host process:
 
 ```bash
 UTCP_MCP_CHILD_STDERR=inherit node your-app.js

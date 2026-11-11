@@ -1,16 +1,16 @@
 {
-  "name": "@utcp/mcp",
-  "version": "1.2.0",
-  "description": "Model Context Protocol integration for UTCP",
+  "name": "@eli-golin/utcp-mcp",
+  "version": "1.2.1",
+  "description": "Model Context Protocol integration for UTCP (maintained fork)",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
   "license": "MPL-2.0",
-  "author": "UTCP Contributors",
+  "author": "Eli Golin (fork of the work by UTCP Contributors)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/universal-tool-calling-protocol/typescript-utcp.git",
+    "url": "https://github.com/Eli-Golin/typescript-utcp",
     "directory": "packages/mcp"
   },
   "keywords": [
@@ -46,7 +46,7 @@
   "dependencies": {
     "@apidevtools/json-schema-ref-parser": "^15.1.2",
     "@modelcontextprotocol/sdk": "^1.17.4",
-    "@utcp/sdk": "^1.2.0",
+    "@eli-golin/utcp-sdk": "^1.2.0",
     "axios": "^1.11.0"
   },
   "devDependencies": {
@@ -55,5 +55,9 @@
     "bun-types": "latest",
     "typescript": "^5.9.2",
     "zod-to-json-schema": "^3.24.6"
+  },
+  "homepage": "https://github.com/Eli-Golin/typescript-utcp/tree/main/packages/mcp#readme",
+  "bugs": {
+    "url": "https://github.com/Eli-Golin/typescript-utcp/issues"
   }
 }

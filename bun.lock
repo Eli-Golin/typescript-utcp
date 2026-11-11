@@ -17,10 +17,10 @@
       },
     },
     "packages/cli": {
-      "name": "@utcp/cli",
-      "version": "1.1.0",
+      "name": "@eli-golin/utcp-cli",
+      "version": "1.1.4",
       "dependencies": {
-        "@utcp/sdk": "^1.0.4",
+        "@eli-golin/utcp-sdk": "^1.1.0",
       },
       "devDependencies": {
         "@types/bun": "latest",
@@ -29,8 +29,8 @@
       },
     },
     "packages/core": {
-      "name": "@utcp/sdk",
-      "version": "1.1.0",
+      "name": "@eli-golin/utcp-sdk",
+      "version": "1.2.1",
       "dependencies": {
         "dotenv": "^17.2.1",
         "zod": "^3.23.8",
@@ -41,21 +41,21 @@
       },
     },
     "packages/direct-call": {
-      "name": "@utcp/direct-call",
-      "version": "1.1.1",
+      "name": "@eli-golin/utcp-direct-call",
+      "version": "1.1.2",
       "devDependencies": {
+        "@eli-golin/utcp-sdk": "^1.1.0",
         "@types/bun": "latest",
-        "@utcp/sdk": "^1.1.0",
         "bun-types": "latest",
         "typescript": "^5.0.0",
       },
       "peerDependencies": {
-        "@utcp/sdk": "^1.1.0",
+        "@eli-golin/utcp-sdk": "^1.1.0",
       },
     },
     "packages/dotenv-loader": {
-      "name": "@utcp/dotenv-loader",
-      "version": "1.1.0",
+      "name": "@eli-golin/utcp-dotenv-loader",
+      "version": "1.1.1",
       "dependencies": {
         "dotenv": "^17.2.1",
         "zod": "^3.23.8",
@@ -65,15 +65,15 @@
         "typescript": "^5.0.0",
       },
       "peerDependencies": {
-        "@utcp/sdk": "^1.0.8",
+        "@eli-golin/utcp-sdk": "^1.1.0",
       },
     },
     "packages/file": {
-      "name": "@utcp/file",
-      "version": "1.1.0",
+      "name": "@eli-golin/utcp-file",
+      "version": "1.1.1",
       "dependencies": {
-        "@utcp/http": "^1.0.7",
-        "@utcp/sdk": "^1.0.8",
+        "@eli-golin/utcp-http": "^1.1.0",
+        "@eli-golin/utcp-sdk": "^1.1.0",
         "js-yaml": "^4.1.0",
       },
       "devDependencies": {
@@ -83,10 +83,10 @@
       },
     },
     "packages/http": {
-      "name": "@utcp/http",
-      "version": "1.1.1",
+      "name": "@eli-golin/utcp-http",
+      "version": "1.1.15",
       "dependencies": {
-        "@utcp/sdk": "^1.0.6",
+        "@eli-golin/utcp-sdk": "^1.1.1",
         "axios": "^1.11.0",
         "js-yaml": "^4.1.0",
       },
@@ -97,12 +97,12 @@
       },
     },
     "packages/mcp": {
-      "name": "@utcp/mcp",
-      "version": "1.1.2",
+      "name": "@eli-golin/utcp-mcp",
+      "version": "1.2.1",
       "dependencies": {
         "@apidevtools/json-schema-ref-parser": "^15.1.2",
+        "@eli-golin/utcp-sdk": "^1.2.0",
         "@modelcontextprotocol/sdk": "^1.17.4",
-        "@utcp/sdk": "^1.0.15",
         "axios": "^1.11.0",
       },
       "devDependencies": {
@@ -114,11 +114,11 @@
       },
     },
     "packages/text": {
-      "name": "@utcp/text",
-      "version": "1.1.0",
+      "name": "@eli-golin/utcp-text",
+      "version": "1.1.1",
       "dependencies": {
-        "@utcp/http": "^1.0.8",
-        "@utcp/sdk": "^1.0.8",
+        "@eli-golin/utcp-http": "^1.1.0",
+        "@eli-golin/utcp-sdk": "^1.1.0",
         "js-yaml": "^4.1.0",
       },
       "devDependencies": {
@@ -132,6 +132,22 @@
   },
   "packages": {
     "@apidevtools/json-schema-ref-parser": ["@apidevtools/json-schema-ref-parser@15.1.2", "", { "dependencies": { "js-yaml": "^4.1.1" }, "peerDependencies": { "@types/json-schema": "^7.0.15" } }, "sha512-54vnqDyGsDAVM0LOIdGMnfVyCN1NlqoGnHEGpMfaDBLMvClfT4j2XbJgvfuF0Ca0kxT6Gb7xUgS5W1I14QqjiQ=="],
+
+    "@eli-golin/utcp-cli": ["@eli-golin/utcp-cli@workspace:packages/cli"],
+
+    "@eli-golin/utcp-direct-call": ["@eli-golin/utcp-direct-call@workspace:packages/direct-call"],
+
+    "@eli-golin/utcp-dotenv-loader": ["@eli-golin/utcp-dotenv-loader@workspace:packages/dotenv-loader"],
+
+    "@eli-golin/utcp-file": ["@eli-golin/utcp-file@workspace:packages/file"],
+
+    "@eli-golin/utcp-http": ["@eli-golin/utcp-http@workspace:packages/http"],
+
+    "@eli-golin/utcp-mcp": ["@eli-golin/utcp-mcp@workspace:packages/mcp"],
+
+    "@eli-golin/utcp-sdk": ["@eli-golin/utcp-sdk@workspace:packages/core"],
+
+    "@eli-golin/utcp-text": ["@eli-golin/utcp-text@workspace:packages/text"],
 
     "@esbuild/aix-ppc64": ["@esbuild/aix-ppc64@0.25.11", "", { "os": "aix", "cpu": "ppc64" }, "sha512-Xt1dOL13m8u0WE8iplx9Ibbm+hFAO0GsU2P34UNoDGvZYkY8ifSiy6Zuc1lYxfG7svWE2fzqCUmFp5HCn51gJg=="],
 
@@ -251,7 +267,7 @@
 
     "@rollup/rollup-win32-x64-msvc": ["@rollup/rollup-win32-x64-msvc@4.52.5", "", { "os": "win32", "cpu": "x64" }, "sha512-TAcgQh2sSkykPRWLrdyy2AiceMckNf5loITqXxFI5VuQjS5tSuw3WlwdN8qv8vzjLAUTvYaH/mVjSFpbkFbpTg=="],
 
-    "@types/bun": ["@types/bun@1.3.0", "", { "dependencies": { "bun-types": "1.3.0" } }, "sha512-+lAGCYjXjip2qY375xX/scJeVRmZ5cY0wyHYyCYxNcdEXrQ4AOe3gACgd4iQ8ksOslJtW4VNxBJ8llUwc3a6AA=="],
+    "@types/bun": ["@types/bun@1.4.4", "", { "dependencies": { "bun-types": "1.4.4" } }, "sha512-9wkRDXUXK124pEnAutE6n/l18j+i9GC5IAHK8TmX/2nlySETmky0OU6yL5U8pW1AoKh++AN9auDCr647BfurjQ=="],
 
     "@types/estree": ["@types/estree@1.0.8", "", {}, "sha512-dWHzHa2WqEXI/O1E9OjrocMTKJl2mSrEolh1Iomrv6U+JuNwaHXsXx9bLu5gG7BUWFIN0skIQJQ/L1rIex4X6w=="],
 
@@ -262,22 +278,6 @@
     "@types/node": ["@types/node@24.3.0", "", { "dependencies": { "undici-types": "~7.10.0" } }, "sha512-aPTXCrfwnDLj4VvXrm+UUCQjNEvJgNA8s5F1cvwQU+3KNltTOkBm1j30uNLyqqPNe7gE3KFzImYoZEfLhp4Yow=="],
 
     "@types/react": ["@types/react@19.1.12", "", { "dependencies": { "csstype": "^3.0.2" } }, "sha512-cMoR+FoAf/Jyq6+Df2/Z41jISvGZZ2eTlnsaJRptmZ76Caldwy1odD4xTr/gNV9VLj0AWgg/nmkevIyUfIIq5w=="],
-
-    "@utcp/cli": ["@utcp/cli@workspace:packages/cli"],
-
-    "@utcp/direct-call": ["@utcp/direct-call@workspace:packages/direct-call"],
-
-    "@utcp/dotenv-loader": ["@utcp/dotenv-loader@workspace:packages/dotenv-loader"],
-
-    "@utcp/file": ["@utcp/file@workspace:packages/file"],
-
-    "@utcp/http": ["@utcp/http@workspace:packages/http"],
-
-    "@utcp/mcp": ["@utcp/mcp@workspace:packages/mcp"],
-
-    "@utcp/sdk": ["@utcp/sdk@workspace:packages/core"],
-
-    "@utcp/text": ["@utcp/text@workspace:packages/text"],
 
     "accepts": ["accepts@2.0.0", "", { "dependencies": { "mime-types": "^3.0.0", "negotiator": "^1.0.0" } }, "sha512-5cvg6CtKwfgdmVqY1WIiXKc3Q1bkRqGLi+2W/6ao+6Y7gu/RCwRuAhGEzh5B4KlszSuTLgZYuqFqo5bImjNKng=="],
 
@@ -441,7 +441,7 @@
 
     "joycon": ["joycon@3.1.1", "", {}, "sha512-34wB/Y7MW7bzjKRjUKTa46I2Z7eV62Rkhva+KkopW7Qvv/OSWBqvkSY7vusOPrNuZcUG3tApvdVgNB8POj3SPw=="],
 
-    "js-yaml": ["js-yaml@4.1.0", "", { "dependencies": { "argparse": "^2.0.1" }, "bin": { "js-yaml": "bin/js-yaml.js" } }, "sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA=="],
+    "js-yaml": ["js-yaml@4.1.1", "", { "dependencies": { "argparse": "^2.0.1" }, "bin": { "js-yaml": "bin/js-yaml.js" } }, "sha512-qQKT4zQxXl8lLwBtHMWwaTcGfFOZviOJet3Oy/xmGk2gZH677CJM9EvtfdSkgWcATZhj/55JZ0rmy3myCT5lsA=="],
 
     "json-schema-traverse": ["json-schema-traverse@0.4.1", "", {}, "sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg=="],
 
@@ -627,29 +627,23 @@
 
     "zod-to-json-schema": ["zod-to-json-schema@3.24.6", "", { "peerDependencies": { "zod": "^3.24.1" } }, "sha512-h/z3PKvcTcTetyjl1fkj79MHNEjm+HpD6NXheWjzOekY7kV+lwDYnHw+ivHkijnCSMz1yJaWBD9vu/Fcmk+vEg=="],
 
-    "@apidevtools/json-schema-ref-parser/js-yaml": ["js-yaml@4.1.1", "", { "dependencies": { "argparse": "^2.0.1" }, "bin": { "js-yaml": "bin/js-yaml.js" } }, "sha512-qQKT4zQxXl8lLwBtHMWwaTcGfFOZviOJet3Oy/xmGk2gZH677CJM9EvtfdSkgWcATZhj/55JZ0rmy3myCT5lsA=="],
+    "@eli-golin/utcp-cli/bun-types": ["bun-types@1.4.4", "", { "dependencies": { "@types/node": "*", "undici-types": "*" } }, "sha512-yjrJh5oGX7mMPKGd19YXyIjmEuj4G4zNC30bs7PM9Az7NQ3ndF3j6hbeRdvJTRQEhJ/FYQwW0a2moweEi2hMxQ=="],
 
-    "@types/bun/bun-types": ["bun-types@1.3.0", "", { "dependencies": { "@types/node": "*" }, "peerDependencies": { "@types/react": "^19" } }, "sha512-u8X0thhx+yJ0KmkxuEo9HAtdfgCBaM/aI9K90VQcQioAmkVp3SG3FkwWGibUFz3WdXAdcsqOcbU40lK7tbHdkQ=="],
+    "@eli-golin/utcp-direct-call/bun-types": ["bun-types@1.4.4", "", { "dependencies": { "@types/node": "*", "undici-types": "*" } }, "sha512-yjrJh5oGX7mMPKGd19YXyIjmEuj4G4zNC30bs7PM9Az7NQ3ndF3j6hbeRdvJTRQEhJ/FYQwW0a2moweEi2hMxQ=="],
 
-    "@utcp/cli/bun-types": ["bun-types@1.3.0", "", { "dependencies": { "@types/node": "*" }, "peerDependencies": { "@types/react": "^19" } }, "sha512-u8X0thhx+yJ0KmkxuEo9HAtdfgCBaM/aI9K90VQcQioAmkVp3SG3FkwWGibUFz3WdXAdcsqOcbU40lK7tbHdkQ=="],
+    "@eli-golin/utcp-dotenv-loader/bun-types": ["bun-types@1.4.4", "", { "dependencies": { "@types/node": "*", "undici-types": "*" } }, "sha512-yjrJh5oGX7mMPKGd19YXyIjmEuj4G4zNC30bs7PM9Az7NQ3ndF3j6hbeRdvJTRQEhJ/FYQwW0a2moweEi2hMxQ=="],
 
-    "@utcp/direct-call/@types/bun": ["@types/bun@1.3.13", "", { "dependencies": { "bun-types": "1.3.13" } }, "sha512-9fqXWk5YIHGGnUau9TEi+qdlTYDAnOj+xLCmSTwXfAIqXr2x4tytJb43E9uCvt09zJURKXwAtkoH4nLQfzeTXw=="],
+    "@eli-golin/utcp-file/bun-types": ["bun-types@1.4.4", "", { "dependencies": { "@types/node": "*", "undici-types": "*" } }, "sha512-yjrJh5oGX7mMPKGd19YXyIjmEuj4G4zNC30bs7PM9Az7NQ3ndF3j6hbeRdvJTRQEhJ/FYQwW0a2moweEi2hMxQ=="],
 
-    "@utcp/direct-call/bun-types": ["bun-types@1.3.13", "", { "dependencies": { "@types/node": "*" } }, "sha512-QXKeHLlOLqQX9LgYaHJfzdBaV21T63HhFJnvuRCcjZiaUDpbs5ED1MgxbMra71CsryN/1dAoXuJJJwIv/2drVA=="],
+    "@eli-golin/utcp-http/bun-types": ["bun-types@1.4.4", "", { "dependencies": { "@types/node": "*", "undici-types": "*" } }, "sha512-yjrJh5oGX7mMPKGd19YXyIjmEuj4G4zNC30bs7PM9Az7NQ3ndF3j6hbeRdvJTRQEhJ/FYQwW0a2moweEi2hMxQ=="],
 
-    "@utcp/dotenv-loader/bun-types": ["bun-types@1.3.1", "", { "dependencies": { "@types/node": "*" }, "peerDependencies": { "@types/react": "^19" } }, "sha512-NMrcy7smratanWJ2mMXdpatalovtxVggkj11bScuWuiOoXTiKIu2eVS1/7qbyI/4yHedtsn175n4Sm4JcdHLXw=="],
+    "@eli-golin/utcp-mcp/bun-types": ["bun-types@1.4.4", "", { "dependencies": { "@types/node": "*", "undici-types": "*" } }, "sha512-yjrJh5oGX7mMPKGd19YXyIjmEuj4G4zNC30bs7PM9Az7NQ3ndF3j6hbeRdvJTRQEhJ/FYQwW0a2moweEi2hMxQ=="],
 
-    "@utcp/file/bun-types": ["bun-types@1.3.1", "", { "dependencies": { "@types/node": "*" }, "peerDependencies": { "@types/react": "^19" } }, "sha512-NMrcy7smratanWJ2mMXdpatalovtxVggkj11bScuWuiOoXTiKIu2eVS1/7qbyI/4yHedtsn175n4Sm4JcdHLXw=="],
+    "@eli-golin/utcp-sdk/bun-types": ["bun-types@1.4.4", "", { "dependencies": { "@types/node": "*", "undici-types": "*" } }, "sha512-yjrJh5oGX7mMPKGd19YXyIjmEuj4G4zNC30bs7PM9Az7NQ3ndF3j6hbeRdvJTRQEhJ/FYQwW0a2moweEi2hMxQ=="],
 
-    "@utcp/http/bun-types": ["bun-types@1.3.1", "", { "dependencies": { "@types/node": "*" }, "peerDependencies": { "@types/react": "^19" } }, "sha512-NMrcy7smratanWJ2mMXdpatalovtxVggkj11bScuWuiOoXTiKIu2eVS1/7qbyI/4yHedtsn175n4Sm4JcdHLXw=="],
+    "@eli-golin/utcp-text/bun-types": ["bun-types@1.4.4", "", { "dependencies": { "@types/node": "*", "undici-types": "*" } }, "sha512-yjrJh5oGX7mMPKGd19YXyIjmEuj4G4zNC30bs7PM9Az7NQ3ndF3j6hbeRdvJTRQEhJ/FYQwW0a2moweEi2hMxQ=="],
 
-    "@utcp/mcp/@types/bun": ["@types/bun@1.3.3", "", { "dependencies": { "bun-types": "1.3.3" } }, "sha512-ogrKbJ2X5N0kWLLFKeytG0eHDleBYtngtlbu9cyBKFtNL3cnpDZkNdQj8flVf6WTZUX5ulI9AY1oa7ljhSrp+g=="],
-
-    "@utcp/mcp/bun-types": ["bun-types@1.3.3", "", { "dependencies": { "@types/node": "*" } }, "sha512-z3Xwlg7j2l9JY27x5Qn3Wlyos8YAp0kKRlrePAOjgjMGS5IG6E7Jnlx736vH9UVI4wUICwwhC9anYL++XeOgTQ=="],
-
-    "@utcp/sdk/bun-types": ["bun-types@1.3.13", "", { "dependencies": { "@types/node": "*" } }, "sha512-QXKeHLlOLqQX9LgYaHJfzdBaV21T63HhFJnvuRCcjZiaUDpbs5ED1MgxbMra71CsryN/1dAoXuJJJwIv/2drVA=="],
-
-    "@utcp/text/bun-types": ["bun-types@1.3.1", "", { "dependencies": { "@types/node": "*" }, "peerDependencies": { "@types/react": "^19" } }, "sha512-NMrcy7smratanWJ2mMXdpatalovtxVggkj11bScuWuiOoXTiKIu2eVS1/7qbyI/4yHedtsn175n4Sm4JcdHLXw=="],
+    "@types/bun/bun-types": ["bun-types@1.4.4", "", { "dependencies": { "@types/node": "*", "undici-types": "*" } }, "sha512-yjrJh5oGX7mMPKGd19YXyIjmEuj4G4zNC30bs7PM9Az7NQ3ndF3j6hbeRdvJTRQEhJ/FYQwW0a2moweEi2hMxQ=="],
 
     "accepts/mime-types": ["mime-types@3.0.1", "", { "dependencies": { "mime-db": "^1.54.0" } }, "sha512-xRc4oEhT6eaBpU1XF7AjpOFD+xQmXNB5OVKwp4tqCuBpHLS/ZbBDrc07mYTDqVMg6PfxUjjNp85O6Cd2Z/5HWA=="],
 

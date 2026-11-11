@@ -1,16 +1,16 @@
 // packages/http/src/http_communication_protocol.ts
 import axios, { AxiosInstance, AxiosRequestConfig, Method } from 'axios';
 import * as yaml from 'js-yaml';
-import { CommunicationProtocol } from '@utcp/sdk';
-import { RegisterManualResult } from '@utcp/sdk';
-import { CallTemplate } from '@utcp/sdk';
-import { Tool } from '@utcp/sdk';
-import { UtcpManualSchema } from '@utcp/sdk';
-import { ApiKeyAuth } from '@utcp/sdk'; 
-import { BasicAuth } from '@utcp/sdk';
-import { OAuth2Auth } from '@utcp/sdk';
-import { OAuth2UserAuth } from '@utcp/sdk';
-import { IUtcpClient } from '@utcp/sdk';
+import { CommunicationProtocol } from '@eli-golin/utcp-sdk';
+import { RegisterManualResult } from '@eli-golin/utcp-sdk';
+import { CallTemplate } from '@eli-golin/utcp-sdk';
+import { Tool } from '@eli-golin/utcp-sdk';
+import { UtcpManualSchema } from '@eli-golin/utcp-sdk';
+import { ApiKeyAuth } from '@eli-golin/utcp-sdk'; 
+import { BasicAuth } from '@eli-golin/utcp-sdk';
+import { OAuth2Auth } from '@eli-golin/utcp-sdk';
+import { OAuth2UserAuth } from '@eli-golin/utcp-sdk';
+import { IUtcpClient } from '@eli-golin/utcp-sdk';
 import { HttpCallTemplateSchema, HttpCallTemplate } from './http_call_template';
 import { OpenApiConverter } from './openapi_converter';
 import {

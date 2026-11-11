@@ -1,10 +1,12 @@
-# @utcp/http
+# @eli-golin/utcp-http
+
+> Maintained fork of the UTCP TypeScript libraries, with fixes not yet released upstream. See [typescript-utcp](https://github.com/Eli-Golin/typescript-utcp).
 
 HTTP-Based Communication Protocols for UTCP
 
 ## Overview
 
-The `@utcp/http` package provides comprehensive HTTP-based protocol support for the Universal Tool Calling Protocol (UTCP). It includes **three distinct protocols**:
+The `@eli-golin/utcp-http` package provides comprehensive HTTP-based protocol support for the Universal Tool Calling Protocol (UTCP). It includes **three distinct protocols**:
 
 1. **HTTP** - Standard RESTful HTTP/HTTPS requests
 2. **Streamable HTTP** - HTTP with chunked transfer encoding for streaming large responses
@@ -140,14 +142,14 @@ Automatically converts OpenAPI specifications to UTCP tools:
 ## Installation
 
 ```bash
-npm install @utcp/http @utcp/sdk
+npm install @eli-golin/utcp-http @eli-golin/utcp-sdk
 
 # Or with bun
-bun add @utcp/http @utcp/sdk
+bun add @eli-golin/utcp-http @eli-golin/utcp-sdk
 ```
 
 **Dependencies:**
-- `@utcp/sdk` - Core UTCP SDK (peer dependency)
+- `@eli-golin/utcp-sdk` - Core UTCP SDK (peer dependency)
 - `axios` - HTTP client
 - `js-yaml` - YAML parsing for OpenAPI specs
 
@@ -160,8 +162,8 @@ All three HTTP-based protocols (`http`, `streamable_http`, `sse`) are **automati
 ### Basic HTTP Usage
 
 ```typescript
-import { UtcpClient } from '@utcp/sdk';
-import { HttpCallTemplateSerializer } from '@utcp/http';
+import { UtcpClient } from '@eli-golin/utcp-sdk';
+import { HttpCallTemplateSerializer } from '@eli-golin/utcp-http';
 
 async function main() {
   const serializer = new HttpCallTemplateSerializer();
@@ -198,8 +200,8 @@ async function main() {
 Automatically discover tools from an OpenAPI spec:
 
 ```typescript
-import { UtcpClient } from '@utcp/sdk';
-import { HttpCallTemplateSerializer } from '@utcp/http';
+import { UtcpClient } from '@eli-golin/utcp-sdk';
+import { HttpCallTemplateSerializer } from '@eli-golin/utcp-http';
 
 const serializer = new HttpCallTemplateSerializer();
 const petstoreTemplate = serializer.validateDict({
@@ -229,8 +231,8 @@ const pets = await client.callTool('petstore_api.findPetsByStatus', {
 Stream large responses using chunked transfer encoding:
 
 ```typescript
-import { UtcpClient } from '@utcp/sdk';
-import { StreamableHttpCallTemplateSerializer } from '@utcp/http';
+import { UtcpClient } from '@eli-golin/utcp-sdk';
+import { StreamableHttpCallTemplateSerializer } from '@eli-golin/utcp-http';
 
 const serializer = new StreamableHttpCallTemplateSerializer();
 const streamTemplate = serializer.validateDict({
@@ -265,8 +267,8 @@ for await (const chunk of stream) {
 Real-time event streaming from servers:
 
 ```typescript
-import { UtcpClient } from '@utcp/sdk';
-import { SseCallTemplateSerializer } from '@utcp/http';
+import { UtcpClient } from '@eli-golin/utcp-sdk';
+import { SseCallTemplateSerializer } from '@eli-golin/utcp-http';
 
 const serializer = new SseCallTemplateSerializer();
 const sseTemplate = serializer.validateDict({
@@ -304,7 +306,7 @@ for await (const event of eventStream) {
 #### API Key Authentication
 
 ```typescript
-import { HttpCallTemplateSerializer } from '@utcp/http';
+import { HttpCallTemplateSerializer } from '@eli-golin/utcp-http';
 
 const serializer = new HttpCallTemplateSerializer();
 const callTemplate = serializer.validateDict({
@@ -543,7 +545,7 @@ The `OpenApiConverter` automatically:
 5. **Creates placeholder variables** for API keys
 
 ```typescript
-import { OpenApiConverter } from '@utcp/http';
+import { OpenApiConverter } from '@eli-golin/utcp-http';
 
 const converter = new OpenApiConverter('https://api.example.com/openapi.json');
 const manual = await converter.convert();
@@ -643,7 +645,7 @@ import {
   ApiKeyAuth,
   BasicAuth,
   OAuth2Auth
-} from '@utcp/http';
+} from '@eli-golin/utcp-http';
 ```
 
 ## Testing
@@ -655,10 +657,10 @@ bun test packages/http/tests/
 
 ## Related Packages
 
-- `@utcp/sdk` - Core UTCP SDK
-- `@utcp/mcp` - MCP protocol support
-- `@utcp/text` - File-based tools
-- `@utcp/cli` - Command-line tools
+- `@eli-golin/utcp-sdk` - Core UTCP SDK
+- `@eli-golin/utcp-mcp` - MCP protocol support
+- `@eli-golin/utcp-text` - File-based tools
+- `@eli-golin/utcp-cli` - Command-line tools
 
 ## Contributing
 

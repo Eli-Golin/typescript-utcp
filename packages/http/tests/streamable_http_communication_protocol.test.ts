@@ -3,8 +3,8 @@ import { test, expect, describe, beforeAll, afterAll } from "bun:test";
 import express, { Express } from 'express';
 import { Server } from 'http';
 // Import from package index to trigger auto-registration
-import { StreamableHttpCommunicationProtocol, StreamableHttpCallTemplate } from "@utcp/http";
-import { IUtcpClient } from "@utcp/sdk";
+import { StreamableHttpCommunicationProtocol, StreamableHttpCallTemplate } from "@eli-golin/utcp-http";
+import { IUtcpClient } from "@eli-golin/utcp-sdk";
 
 // --- Test Server Setup ---
 let app: Express;

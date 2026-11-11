@@ -10,19 +10,19 @@ Your packages now use the **standard library pattern** - all exports go through 
 
 ```typescript
 // ✅ CORRECT - Import from package root
-import { UtcpClient, ToolDefinition, CallTemplate } from '@utcp/sdk';
-import { McpCommunicationProtocol } from '@utcp/mcp';
-import { TextCallTemplate } from '@utcp/text';
-import { HttpCommunicationProtocol } from '@utcp/http';
-import { CliCallTemplate } from '@utcp/cli';
+import { UtcpClient, ToolDefinition, CallTemplate } from '@eli-golin/utcp-sdk';
+import { McpCommunicationProtocol } from '@eli-golin/utcp-mcp';
+import { TextCallTemplate } from '@eli-golin/utcp-text';
+import { HttpCommunicationProtocol } from '@eli-golin/utcp-http';
+import { CliCallTemplate } from '@eli-golin/utcp-cli';
 ```
 
 ### ❌ Don't Import from Subpaths
 
 ```typescript
 // ❌ WRONG - Don't import from dist or subpaths
-import { ToolDefinition } from '@utcp/sdk';
-import { ToolDefinition } from '@utcp/sdk/data';
+import { ToolDefinition } from '@eli-golin/utcp-sdk';
+import { ToolDefinition } from '@eli-golin/utcp-sdk/data';
 ```
 
 ## Why This Is Better
@@ -44,7 +44,7 @@ Internal file structure can change without breaking user code.
 
 ## Package Exports Summary
 
-### @utcp/sdk (Core Package)
+### @eli-golin/utcp-sdk (Core Package)
 ```typescript
 import {
   // Client
@@ -72,27 +72,27 @@ import {
   
   // Plugins
   PluginLoader
-} from '@utcp/sdk';
+} from '@eli-golin/utcp-sdk';
 ```
 
-### @utcp/mcp
+### @eli-golin/utcp-mcp
 ```typescript
 import {
   McpCommunicationProtocol,
   McpCallTemplate
-} from '@utcp/mcp';
+} from '@eli-golin/utcp-mcp';
 ```
 
-### @utcp/text
+### @eli-golin/utcp-text
 ```typescript
 import {
   TextCommunicationProtocol,
   TextCallTemplate,
   TextCallTemplateSerializer
-} from '@utcp/text';
+} from '@eli-golin/utcp-text';
 ```
 
-### @utcp/http
+### @eli-golin/utcp-http
 ```typescript
 import {
   HttpCommunicationProtocol,
@@ -102,15 +102,15 @@ import {
   SseCallTemplate,
   StreamableHttpCommunicationProtocol,
   StreamableHttpCallTemplate
-} from '@utcp/http';
+} from '@eli-golin/utcp-http';
 ```
 
-### @utcp/cli
+### @eli-golin/utcp-cli
 ```typescript
 import {
   CliCommunicationProtocol,
   CliCallTemplate
-} from '@utcp/cli';
+} from '@eli-golin/utcp-cli';
 ```
 
 ## TypeScript IntelliSense
@@ -118,7 +118,7 @@ import {
 Your IDE will show all available exports when you start typing:
 
 ```typescript
-import { /* Ctrl+Space to see all exports */ } from '@utcp/sdk';
+import { /* Ctrl+Space to see all exports */ } from '@eli-golin/utcp-sdk';
 ```
 
 ## Configuration Changes Made
@@ -131,7 +131,7 @@ import { /* Ctrl+Space to see all exports */ } from '@utcp/sdk';
       "import": "./dist/index.js"
     },
     "./*": {
-      "import": "./dist/*.js"  // ❌ This caused @utcp/sdk/dist/ imports
+      "import": "./dist/*.js"  // ❌ This caused @eli-golin/utcp-sdk/dist/ imports
     }
   }
 }
@@ -165,10 +165,10 @@ If users were importing from subpaths, they need to update:
 
 ```typescript
 // Before
-import { ToolDefinition } from '@utcp/sdk';
+import { ToolDefinition } from '@eli-golin/utcp-sdk';
 
 // After
-import { ToolDefinition } from '@utcp/sdk';
+import { ToolDefinition } from '@eli-golin/utcp-sdk';
 ```
 
 This is a one-line change and follows standard npm package conventions.

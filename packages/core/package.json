@@ -1,16 +1,16 @@
 {
-  "name": "@utcp/sdk",
-  "version": "1.2.0",
-  "description": "Universal Tool Calling Protocol SDK",
+  "name": "@eli-golin/utcp-sdk",
+  "version": "1.2.1",
+  "description": "Universal Tool Calling Protocol SDK (maintained fork)",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
   "license": "MPL-2.0",
-  "author": "UTCP Contributors",
+  "author": "Eli Golin (fork of the work by UTCP Contributors)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/universal-tool-calling-protocol/typescript-utcp",
+    "url": "https://github.com/Eli-Golin/typescript-utcp",
     "directory": "packages/core"
   },
   "keywords": [
@@ -51,5 +51,9 @@
   "devDependencies": {
     "bun-types": "latest",
     "typescript": "^5.0.0"
+  },
+  "homepage": "https://github.com/Eli-Golin/typescript-utcp/tree/main/packages/core#readme",
+  "bugs": {
+    "url": "https://github.com/Eli-Golin/typescript-utcp/issues"
   }
 }

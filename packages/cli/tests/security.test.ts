@@ -10,7 +10,7 @@
 //     `process.env` re-merge (mirror of python-utcp's
 //     GHSA-5v57-8rxj-3p2r).
 //
-// As of @utcp/cli 1.1.1+, substitution is context-aware: it tracks the
+// As of @eli-golin/utcp-cli 1.1.1+, substitution is context-aware: it tracks the
 // surrounding quote state in the template and emits a shell variable
 // reference (`$VAR` / `${VAR}` / `$env:VAR`) for each placeholder, then
 // carries the actual values to the subprocess via env vars. The shell
@@ -21,7 +21,7 @@
 import { test, expect, describe, beforeEach, afterEach } from 'bun:test';
 import { CliCommunicationProtocol } from '../src/cli_communication_protocol';
 import { CliCallTemplate, CliCallTemplateSchema, CliCallTemplateSerializer } from '../src/cli_call_template';
-import { IUtcpClient } from '@utcp/sdk';
+import { IUtcpClient } from '@eli-golin/utcp-sdk';
 import * as os from 'os';
 import * as path from 'path';
 import * as fs from 'fs/promises';

@@ -5,13 +5,13 @@ import { ErrorCode, McpError } from '@modelcontextprotocol/sdk/types.js';
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
 import { StreamableHTTPClientTransport, StreamableHTTPClientTransportOptions, StreamableHTTPError } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 import axios, { AxiosInstance } from 'axios';
-import { CommunicationProtocol } from '@utcp/sdk';
-import { RegisterManualResult } from '@utcp/sdk';
-import { CallTemplate } from '@utcp/sdk';
-import { UtcpManualSchema } from '@utcp/sdk';
-import { Tool, JsonSchema } from '@utcp/sdk';
-import { Auth, OAuth2Auth, OAuth2UserAuth } from '@utcp/sdk';
-import { IUtcpClient } from '@utcp/sdk';
+import { CommunicationProtocol } from '@eli-golin/utcp-sdk';
+import { RegisterManualResult } from '@eli-golin/utcp-sdk';
+import { CallTemplate } from '@eli-golin/utcp-sdk';
+import { UtcpManualSchema } from '@eli-golin/utcp-sdk';
+import { Tool, JsonSchema } from '@eli-golin/utcp-sdk';
+import { Auth, OAuth2Auth, OAuth2UserAuth } from '@eli-golin/utcp-sdk';
+import { IUtcpClient } from '@eli-golin/utcp-sdk';
 
 /** Defense-in-depth: refuse CR/LF in attacker-influenceable strings
  *  that will land in HTTP headers. */
@@ -27,7 +27,7 @@ function assertNoCrlf(value: string | undefined, fieldName: string): void {
 
 /**
  * Minimal HTTPS-or-loopback URL guard for the MCP HTTP transport.
- * Mirrors the validator in `@utcp/http`'s `_security.ts` to keep MCP
+ * Mirrors the validator in `@eli-golin/utcp-http`'s `_security.ts` to keep MCP
  * from being a back-door SSRF vector when the MCP call template comes
  * from an attacker-influenceable source (e.g. a discovered manual).
  * Hostname-based -- not prefix-based -- so the bypass from
@@ -55,7 +55,7 @@ function ensureSecureMcpUrl(rawUrl: string, context: string): void {
   if (scheme === 'https:') return;
   if (scheme === 'http:' && MCP_LOOPBACK_HOSTNAMES.has(host)) return;
   // Match the broader 127.0.0.0/8 + 0.0.0.0 + IPv4-mapped IPv6
-  // loopback set that ``isLoopbackUrl`` in @utcp/http covers, so an
+  // loopback set that ``isLoopbackUrl`` in @eli-golin/utcp-http covers, so an
   // attacker can't paper over the hostname check with `127.0.0.2`.
   if (scheme === 'http:') {
     const v4 = host.match(/^(\d{1,3})\.\d{1,3}\.\d{1,3}\.\d{1,3}$/);
@@ -393,7 +393,7 @@ export class McpCommunicationProtocol implements CommunicationProtocol {
       const httpConfig: McpHttpServer = McpHttpServerSchema.parse(serverConfig);
       // Reject plain-HTTP non-loopback URLs and obvious SSRF targets
       // before any connection attempt. Matches the trust boundary
-      // @utcp/http enforces for its own discovery / invocation URLs.
+      // @eli-golin/utcp-http enforces for its own discovery / invocation URLs.
       ensureSecureMcpUrl(httpConfig.url, 'MCP HTTP transport');
       let authHeader: Record<string, string> = {};
       if (auth) {

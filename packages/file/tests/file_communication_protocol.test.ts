@@ -3,9 +3,9 @@ import { test, expect, describe, afterEach } from "bun:test";
 import { unlink, writeFile } from 'fs/promises';
 import path from 'path';
 // Import from package indices to trigger auto-registration
-import { FileCommunicationProtocol, FileCallTemplate } from "@utcp/file";
-import "@utcp/http"; // Needed for OpenAPI conversion
-import { IUtcpClient, ApiKeyAuth } from "@utcp/sdk";
+import { FileCommunicationProtocol, FileCallTemplate } from "@eli-golin/utcp-file";
+import "@eli-golin/utcp-http"; // Needed for OpenAPI conversion
+import { IUtcpClient, ApiKeyAuth } from "@eli-golin/utcp-sdk";
 
 const tempFiles: string[] = [];
 const mockClient = {} as IUtcpClient;

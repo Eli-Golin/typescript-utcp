@@ -1,10 +1,12 @@
-# @utcp/sdk
+# @eli-golin/utcp-sdk
+
+> Maintained fork of the UTCP TypeScript libraries, with fixes not yet released upstream. See [typescript-utcp](https://github.com/Eli-Golin/typescript-utcp).
 
 Universal Tool Calling Protocol (UTCP) Core SDK for TypeScript
 
 ## Overview
 
-The `@utcp/sdk` package provides the fundamental components and interfaces for the Universal Tool Calling Protocol (UTCP) in TypeScript. It is designed to be lean and extensible, serving as the central hub for integrating various communication protocols via a plugin-based architecture.
+The `@eli-golin/utcp-sdk` package provides the fundamental components and interfaces for the Universal Tool Calling Protocol (UTCP) in TypeScript. It is designed to be lean and extensible, serving as the central hub for integrating various communication protocols via a plugin-based architecture.
 
 ## Features
 
@@ -37,10 +39,10 @@ The `@utcp/sdk` package provides the fundamental components and interfaces for t
 ## Installation
 
 ```bash
-npm install @utcp/sdk
+npm install @eli-golin/utcp-sdk
 
 # Or with bun
-bun add @utcp/sdk
+bun add @eli-golin/utcp-sdk
 ```
 
 ## Quick Start
@@ -50,9 +52,9 @@ bun add @utcp/sdk
 **Important:** Plugins must be explicitly imported to register their protocols:
 
 ```typescript
-import { UtcpClient } from '@utcp/sdk';
-import '@utcp/http';  // Auto-registers HTTP protocol
-import { HttpCallTemplateSerializer } from '@utcp/http';
+import { UtcpClient } from '@eli-golin/utcp-sdk';
+import '@eli-golin/utcp-http';  // Auto-registers HTTP protocol
+import { HttpCallTemplateSerializer } from '@eli-golin/utcp-http';
 
 async function main() {
   // Create client
@@ -88,8 +90,8 @@ async function main() {
 ### With Environment Variables
 
 ```typescript
-import { UtcpClient } from '@utcp/sdk';
-import '@utcp/dotenv-loader';  // Required for .env file support
+import { UtcpClient } from '@eli-golin/utcp-sdk';
+import '@eli-golin/utcp-dotenv-loader';  // Required for .env file support
 
 const client = await UtcpClient.create(process.cwd(), {
   load_variables_from: [
@@ -246,15 +248,15 @@ All lookups use the namespaced key: `{namespace}_VARIABLE_NAME`
 UTCP provides several optional protocol plugins:
 
 **Browser-Compatible:**
-- `@utcp/http` - HTTP/HTTPS requests with full authentication support
-- `@utcp/text` - Direct text/string content (inline UTCP manuals or OpenAPI specs)
-- `@utcp/direct-call` - Direct function calls
+- `@eli-golin/utcp-http` - HTTP/HTTPS requests with full authentication support
+- `@eli-golin/utcp-text` - Direct text/string content (inline UTCP manuals or OpenAPI specs)
+- `@eli-golin/utcp-direct-call` - Direct function calls
 
 **Node.js Only:**
-- `@utcp/file` - File system access for loading manuals from local files
-- `@utcp/mcp` - Model Context Protocol support
-- `@utcp/cli` - CLI command execution
-- `@utcp/dotenv-loader` - Load variables from .env files
+- `@eli-golin/utcp-file` - File system access for loading manuals from local files
+- `@eli-golin/utcp-mcp` - Model Context Protocol support
+- `@eli-golin/utcp-cli` - CLI command execution
+- `@eli-golin/utcp-dotenv-loader` - Load variables from .env files
 
 ### Explicit Plugin Import
 
@@ -262,17 +264,17 @@ Each plugin must be **explicitly imported** to register its protocol:
 
 ```typescript
 // Browser application - only import browser-compatible plugins
-import { UtcpClient } from '@utcp/sdk';
-import '@utcp/http';
-import '@utcp/text';
-import '@utcp/direct-call';
+import { UtcpClient } from '@eli-golin/utcp-sdk';
+import '@eli-golin/utcp-http';
+import '@eli-golin/utcp-text';
+import '@eli-golin/utcp-direct-call';
 
 // Node.js application - can use all plugins
-import { UtcpClient } from '@utcp/sdk';
-import '@utcp/http';
-import '@utcp/mcp';
-import '@utcp/file';
-import '@utcp/dotenv-loader';
+import { UtcpClient } from '@eli-golin/utcp-sdk';
+import '@eli-golin/utcp-http';
+import '@eli-golin/utcp-mcp';
+import '@eli-golin/utcp-file';
+import '@eli-golin/utcp-dotenv-loader';
 ```
 
 This explicit import approach ensures:
@@ -286,8 +288,8 @@ This explicit import approach ensures:
 For custom or third-party plugins:
 
 ```typescript
-import { CallTemplateSerializer } from '@utcp/sdk';
-import { CommunicationProtocol } from '@utcp/sdk';
+import { CallTemplateSerializer } from '@eli-golin/utcp-sdk';
+import { CommunicationProtocol } from '@eli-golin/utcp-sdk';
 
 // Register custom call template
 CallTemplateSerializer.registerCallTemplate(
@@ -313,14 +315,14 @@ CommunicationProtocol.communicationProtocolFactories['custom_type'] =
 
 This is what makes "a client per tenant / per user / per pooled connection" actually isolate them, rather than every client reaching into one shared instance. A type registered as a factory wins over the same type registered as an instance, so a plugin migrates by moving its registration from one map to the other and callers change nothing.
 
-`@utcp/mcp` registers this way — MCP sessions (and, for stdio, child processes) belong to the client that opened them. `@utcp/http` stays a shared instance: its OAuth token cache is meant to be reused across clients.
+`@eli-golin/utcp-mcp` registers this way — MCP sessions (and, for stdio, child processes) belong to the client that opened them. `@eli-golin/utcp-http` stays a shared instance: its OAuth token cache is meant to be reused across clients.
 
 ## Advanced Usage
 
 ### Custom Tool Repository
 
 ```typescript
-import { ConcurrentToolRepository, Tool } from '@utcp/sdk';
+import { ConcurrentToolRepository, Tool } from '@eli-golin/utcp-sdk';
 
 class CustomRepository implements ConcurrentToolRepository {
   tool_repository_type = 'custom' as const;
@@ -340,7 +342,7 @@ const client = await UtcpClient.create(process.cwd(), {
 ### Custom Search Strategy
 
 ```typescript
-import { ToolSearchStrategy } from '@utcp/sdk';
+import { ToolSearchStrategy } from '@eli-golin/utcp-sdk';
 
 class CustomSearchStrategy implements ToolSearchStrategy {
   tool_search_strategy_type = 'custom' as const;
@@ -378,7 +380,7 @@ const client = await UtcpClient.create(process.cwd(), {
 ## Error Handling
 
 ```typescript
-import { UtcpVariableNotFoundError } from '@utcp/sdk';
+import { UtcpVariableNotFoundError } from '@eli-golin/utcp-sdk';
 
 try {
   await client.callTool('manual.tool', {});
@@ -395,7 +397,7 @@ try {
 The package is fully typed with TypeScript. All schemas are validated at runtime using Zod:
 
 ```typescript
-import { ToolSchema, CallTemplateSchema } from '@utcp/sdk';
+import { ToolSchema, CallTemplateSchema } from '@eli-golin/utcp-sdk';
 
 // Runtime validation
 const tool = ToolSchema.parse(toolData);
@@ -405,7 +407,7 @@ const callTemplate = CallTemplateSchema.parse(templateData);
 ## Package Structure
 
 ```
-@utcp/sdk/
+@eli-golin/utcp-sdk/
 ├── client/              # UtcpClient and configuration
 ├── data/                # Core data models (Tool, CallTemplate, Auth, etc.)
 ├── interfaces/          # Abstract interfaces for plugins
@@ -418,11 +420,11 @@ const callTemplate = CallTemplateSchema.parse(templateData);
 
 ## Related Packages
 
-- **`@utcp/sdk`** - Core SDK (this package)
-- `@utcp/http` - HTTP protocol support with OpenAPI conversion
-- `@utcp/mcp` - Model Context Protocol integration
-- `@utcp/text` - File-based tool loading
-- `@utcp/cli` - Command-line tool execution
+- **`@eli-golin/utcp-sdk`** - Core SDK (this package)
+- `@eli-golin/utcp-http` - HTTP protocol support with OpenAPI conversion
+- `@eli-golin/utcp-mcp` - Model Context Protocol integration
+- `@eli-golin/utcp-text` - File-based tool loading
+- `@eli-golin/utcp-cli` - Command-line tool execution
 
 ## Contributing
 

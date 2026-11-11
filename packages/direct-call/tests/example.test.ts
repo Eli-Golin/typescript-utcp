@@ -2,9 +2,9 @@
  * Example test file demonstrating usage of the direct-call plugin.
  */
 import { describe, test, expect, beforeAll } from 'bun:test';
-import { UtcpClient, CommunicationProtocol } from '@utcp/sdk';
+import { UtcpClient, CommunicationProtocol } from '@eli-golin/utcp-sdk';
 import { addFunctionToUtcpDirectCall, registerCallable, DirectCallTemplate } from '../src';
-import type { UtcpManual } from '@utcp/sdk';
+import type { UtcpManual } from '@eli-golin/utcp-sdk';
 
 // Example: Using addFunctionToUtcpDirectCall to register a function that returns a manual
 const getTestManual = addFunctionToUtcpDirectCall('testManual', async (): Promise<UtcpManual> => {

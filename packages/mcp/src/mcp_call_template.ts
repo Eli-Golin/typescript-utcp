@@ -1,9 +1,9 @@
 // packages/mcp/src/mcp_call_template.ts
 import { z } from 'zod';
-import { CallTemplate } from '@utcp/sdk';
-import { Auth } from '@utcp/sdk';
-import { AuthSchema } from '@utcp/sdk';
-import { Serializer } from '@utcp/sdk';
+import { CallTemplate } from '@eli-golin/utcp-sdk';
+import { Auth } from '@eli-golin/utcp-sdk';
+import { AuthSchema } from '@eli-golin/utcp-sdk';
+import { Serializer } from '@eli-golin/utcp-sdk';
 
 /**
  * Type alias for MCP server configurations.

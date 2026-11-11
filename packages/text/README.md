@@ -1,15 +1,17 @@
-# @utcp/text
+# @eli-golin/utcp-text
+
+> Maintained fork of the UTCP TypeScript libraries, with fixes not yet released upstream. See [typescript-utcp](https://github.com/Eli-Golin/typescript-utcp).
 
 Text Content Communication Protocol plugin for the Universal Tool Calling Protocol (UTCP).
 
 ## Overview
 
-This plugin provides support for loading UTCP manuals and tool definitions from direct text/string content. Unlike `@utcp/file` which reads from files, this plugin is **browser-compatible** and works in any JavaScript environment.
+This plugin provides support for loading UTCP manuals and tool definitions from direct text/string content. Unlike `@eli-golin/utcp-file` which reads from files, this plugin is **browser-compatible** and works in any JavaScript environment.
 
 ## Installation
 
 ```bash
-npm install @utcp/text
+npm install @eli-golin/utcp-text
 ```
 
 ## Usage
@@ -17,8 +19,8 @@ npm install @utcp/text
 The plugin automatically registers itself when imported:
 
 ```typescript
-import '@utcp/text';
-import { UtcpClient } from '@utcp/sdk';
+import '@eli-golin/utcp-text';
+import { UtcpClient } from '@eli-golin/utcp-sdk';
 
 const utcpManualContent = JSON.stringify({
   tools: [
@@ -58,8 +60,8 @@ The text call template accepts the following configuration:
 ## Example: OpenAPI Spec
 
 ```typescript
-import '@utcp/text';
-import { UtcpClient } from '@utcp/sdk';
+import '@eli-golin/utcp-text';
+import { UtcpClient } from '@eli-golin/utcp-sdk';
 
 const openApiSpec = `
 openapi: 3.0.0
@@ -88,8 +90,8 @@ await client.registerCallTemplate({
 Perfect for web applications:
 
 ```typescript
-import '@utcp/text';
-import { UtcpClient } from '@utcp/sdk';
+import '@eli-golin/utcp-text';
+import { UtcpClient } from '@eli-golin/utcp-sdk';
 
 // Load from API or inline
 const response = await fetch('/api/utcp-manual');
@@ -103,9 +105,9 @@ await client.registerCallTemplate({
 });
 ```
 
-## Comparison with @utcp/file
+## Comparison with @eli-golin/utcp-file
 
-| Feature | @utcp/text | @utcp/file |
+| Feature | @eli-golin/utcp-text | @eli-golin/utcp-file |
 |---------|-------------|-----------|
 | Browser compatible | ✅ Yes | ❌ No |
 | Node.js compatible | ✅ Yes | ✅ Yes |

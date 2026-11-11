@@ -1,8 +1,8 @@
 // packages/http/tests/url_template.test.ts
 import { test, expect, describe } from "bun:test";
 import { buildUrlWithPathParams } from "../src/_url";
-import { DefaultVariableSubstitutor } from "@utcp/sdk";
-import type { UtcpClientConfig } from "@utcp/sdk";
+import { DefaultVariableSubstitutor } from "@eli-golin/utcp-sdk";
+import type { UtcpClientConfig } from "@eli-golin/utcp-sdk";
 
 describe("buildUrlWithPathParams", () => {
   test("encodes embedded path parameters", () => {

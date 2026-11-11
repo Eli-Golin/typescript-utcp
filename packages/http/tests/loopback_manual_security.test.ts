@@ -4,7 +4,7 @@
 // hand-written-manual path (the OpenAPI converter enforces the same rule for
 // specs it converts).
 import { test, expect, describe } from "bun:test";
-import { HttpCommunicationProtocol } from "@utcp/http";
+import { HttpCommunicationProtocol } from "@eli-golin/utcp-http";
 
 describe("HttpCommunicationProtocol remote-loopback SSRF guard", () => {
   const protocol: any = new HttpCommunicationProtocol();
