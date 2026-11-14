@@ -605,6 +605,45 @@ describe("McpCommunicationProtocol", () => {
       expect((protocol as any)._mcpSessions.has(KEY)).toBe(false);
     });
 
+    test("a structured HTTP 404 (server forgot our session) evicts and retries once against a fresh session", async () => {
+      // MCP Streamable HTTP: a 404 for a request carrying Mcp-Session-Id
+      // means the session is gone (server restarted); the client must start
+      // a new one. Before the fix this classified as null, so the dead
+      // session stayed cached and every later call failed the same way.
+      const protocol = new McpCommunicationProtocol();
+      let calls = 0;
+      const client = seed(protocol, () => {
+        calls += 1;
+        return calls === 1
+          ? Promise.reject(new StreamableHTTPError(404, "Error POSTing to endpoint (HTTP 404): Session not found"))
+          : Promise.resolve("ok");
+      });
+
+      await expect(run(protocol, client)).resolves.toBe("ok");
+      expect(calls).toBe(2);
+      expect(client.closed).toBe(1);
+    });
+
+    test("a stringified 404 'Session not found' whose body mentions Authentication is retried, not treated as auth", async () => {
+      // Real Metals response: the 404 body is a Java stack trace that names
+      // `AuthenticationMechanismsHandler`. The auth heuristic used to win and
+      // the call failed without a retry.
+      const protocol = new McpCommunicationProtocol();
+      let calls = 0;
+      const body = '{"stackTrace":[{"className":"io.undertow.security.handlers.AuthenticationMechanismsHandler"}],' +
+        '"jsonRpcError":{"code":-32603,"message":"Session not found: 9b918b12"}}';
+      const client = seed(protocol, () => {
+        calls += 1;
+        return calls === 1
+          ? Promise.reject(new Error(`Error POSTing to endpoint (HTTP 404): ${body}`))
+          : Promise.resolve("ok");
+      });
+
+      await expect(run(protocol, client)).resolves.toBe("ok");
+      expect(calls).toBe(2);
+      expect(client.closed).toBe(1);
+    });
+
     test("a structured ConnectionClosed (-32000) stays transient: evict + one retry", async () => {
       // -32000 is raised CLIENT-side by the SDK when the session drops
       // mid-request — the exact condition the old "closed" substring

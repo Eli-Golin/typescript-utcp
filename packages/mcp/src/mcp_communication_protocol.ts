@@ -548,10 +548,29 @@ export class McpCommunicationProtocol implements CommunicationProtocol {
       if (err.code === ErrorCode.RequestTimeout) return 'timeout';
       return null;
     }
+    // HTTP 404 on a Streamable HTTP request means the server no longer knows
+    // our session id — typically the server restarted (an editor relaunching
+    // its language server, a redeploy) and the cached transport still sends
+    // the old Mcp-Session-Id. The MCP spec (Streamable HTTP, session
+    // management) says the client MUST then start a new session, so this is
+    // transient: evict and retry once against a fresh dial. A 404 for a wrong
+    // URL fails the retry the same way and the retry's session is evicted, so
+    // nothing dead stays cached either way.
+    if (err instanceof StreamableHTTPError && err.code === 404) {
+      return 'transient';
+    }
     if (err instanceof StreamableHTTPError && (err.code === 401 || err.code === 403)) {
       return 'auth';
     }
     const msg = String((err as any)?.message ?? err).toLowerCase();
+    // Same 404 condition when the error arrives wrapped or stringified.
+    // Checked BEFORE the auth heuristics: servers attach bodies to the 404
+    // (Metals sends a full Java stack trace naming classes such as
+    // `AuthenticationMechanismsHandler`), and those words must not turn an
+    // expired session into a non-retried auth failure.
+    if (/\bsession not found\b|\(http 404\)/.test(msg)) {
+      return 'transient';
+    }
     // Auth-class rejections — checked FIRST: transports often wrap an auth
     // failure in connection vocabulary ("connection closed: 401
     // Unauthorized"), and letting the transient markers win would retry a

@@ -98,7 +98,7 @@
     },
     "packages/mcp": {
       "name": "@eli-golin/utcp-mcp",
-      "version": "1.2.1",
+      "version": "1.2.2",
       "dependencies": {
         "@apidevtools/json-schema-ref-parser": "^15.1.2",
         "@eli-golin/utcp-sdk": "^1.2.0",

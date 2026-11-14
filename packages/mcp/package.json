@@ -1,6 +1,6 @@
 {
   "name": "@eli-golin/utcp-mcp",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Model Context Protocol integration for UTCP (maintained fork)",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
