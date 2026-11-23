@@ -96,7 +96,30 @@ interface SseCallTemplate {
 *   **Security**:
     *   Enforces HTTPS or localhost connections
     *   Prevents Man-in-the-Middle (MITM) attacks
+    *   Per-call-template opt-in to plain HTTP for a trusted non-loopback host: `allow_insecure_http: true` (see below)
     *   OAuth2 token caching to minimize token requests
+
+### Plain HTTP to a LAN host (`allow_insecure_http`)
+
+By default every `http`, `sse` and `streamable_http` call template must use HTTPS or a literal loopback
+address; plain `http://` to any other host is refused. A service on a trusted network that has no TLS
+(for example Grafana on a Kubernetes NodePort) can be allowed per call template:
+
+```json
+{
+  "name": "grafana_dev",
+  "call_template_type": "http",
+  "http_method": "GET",
+  "url": "http://192.168.14.245:32520/api/search",
+  "allow_insecure_http": true
+}
+```
+
+- Off by default; set it on each call template that needs it (requests then travel unencrypted, credentials included).
+- It covers manual discovery and tool invocation. A redirect keeps the allowance only while it stays on the same origin.
+- OAuth2 token URLs stay HTTPS-only.
+- A manual fetched over the network may only carry `allow_insecure_http` on its tools if the call template that fetched
+  it sets the flag too. An OpenAPI spec discovered with the flag passes it on to every generated tool.
 
 ### OpenAPI Converter
 

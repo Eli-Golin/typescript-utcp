@@ -23,6 +23,8 @@ export interface HttpCallTemplate extends CallTemplate {
   header_fields?: string[];
   auth_tools?: Auth | null;
   allowed_communication_protocols?: string[];
+  /** Allow plain `http://` to a non-loopback host. Off by default; see `ensureSecureUrl`. */
+  allow_insecure_http?: boolean;
 }
 
 /**
@@ -47,6 +49,7 @@ export const HttpCallTemplateSchema: z.ZodType<HttpCallTemplate> = z.object({
     return val as Auth;
   }).describe('Authentication configuration for generated tools'),
   allowed_communication_protocols: z.array(z.string()).optional().describe('Optional list of allowed communication protocol types for tools within this manual.'),
+  allow_insecure_http: z.boolean().optional().describe('Allow plain http:// to a non-loopback host (a LAN service without TLS). Off by default: requests then travel unencrypted, so enable it only for hosts on a network path you trust.'),
 }) as z.ZodType<HttpCallTemplate>;
 
 /**
@@ -67,6 +70,7 @@ export class HttpCallTemplateSerializer extends Serializer<HttpCallTemplate> {
       body_field: obj.body_field,
       header_fields: obj.header_fields,
       allowed_communication_protocols: obj.allowed_communication_protocols,
+      allow_insecure_http: obj.allow_insecure_http,
     };
   }
 

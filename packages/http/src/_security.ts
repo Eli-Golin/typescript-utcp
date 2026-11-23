@@ -53,7 +53,7 @@ function getHostname(parsed: URL): string {
  *     let these through.
  *   - Anything without a scheme/host (file://, javascript:, etc.).
  */
-export function isSecureUrl(url: string): boolean {
+export function isSecureUrl(url: string, allowInsecureHttp: boolean = false): boolean {
   const parsed = tryParseUrl(url);
   if (!parsed) return false;
 
@@ -64,7 +64,10 @@ export function isSecureUrl(url: string): boolean {
   if (scheme === 'https:') return true;
 
   if (scheme === 'http:') {
-    return LOOPBACK_HOSTNAMES.has(host);
+    // `allowInsecureHttp` is the call template's explicit
+    // `allow_insecure_http: true` opt-in: the operator accepts plain HTTP to
+    // the host they wrote in the template (a LAN service with no TLS).
+    return allowInsecureHttp || LOOPBACK_HOSTNAMES.has(host);
   }
 
   return false;
@@ -167,16 +170,46 @@ export function isLoopbackUrl(url: string): boolean {
  * etc.) included in the error so log readers can tell which trust boundary
  * was breached.
  */
-export function ensureSecureUrl(url: string, context?: string): void {
-  if (isSecureUrl(url)) return;
+export function ensureSecureUrl(url: string, context?: string, allowInsecureHttp: boolean = false): void {
+  if (isSecureUrl(url, allowInsecureHttp)) return;
 
   const where = context ? ` during ${context}` : '';
   throw new Error(
     `Security error${where}: URL must use HTTPS or be a literal loopback ` +
       `address (localhost / 127.0.0.1 / ::1). Got: ${JSON.stringify(url)}. ` +
       'Plain HTTP to any other host is rejected to prevent MITM attacks ' +
-      'and SSRF into internal services.',
+      'and SSRF into internal services. If this host serves plain HTTP only ' +
+      'and you trust the network path, set `allow_insecure_http: true` on ' +
+      'its call template.',
   );
+}
+
+/**
+ * Refuse a manual fetched over the network whose tools opt into plain HTTP
+ * (`allow_insecure_http: true`) when the call template that fetched it did not.
+ *
+ * The opt-in is a statement by the operator who wrote the call template. A
+ * remote manual must not be able to make it on the operator's behalf: that
+ * would let any HTTPS endpoint hand out tools aimed at plain-HTTP internal
+ * services, reopening the MITM / SSRF exposure `ensureSecureUrl` closes.
+ * Manuals loaded from a local file are unaffected -- the file is the operator's.
+ */
+export function rejectUndeclaredInsecureHttpOptIn(
+  discoveryUrl: string,
+  manual: { tools?: Array<any> },
+  discoveryAllowsInsecureHttp: boolean,
+  context: string = 'manual discovery',
+): void {
+  if (discoveryAllowsInsecureHttp) return;
+  for (const tool of manual.tools || []) {
+    if (tool?.tool_call_template?.allow_insecure_http === true) {
+      throw new Error(
+        `Security error during ${context}: a manual fetched from ${JSON.stringify(discoveryUrl)} ` +
+          `sets allow_insecure_http on tool ${JSON.stringify(tool?.name)}, but the call template ` +
+          'that fetched it does not. Only the operator\'s own call template can opt into plain HTTP.',
+      );
+    }
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -532,8 +565,9 @@ export async function safeRequestWithRedirects<T = any>(
   context: string,
   maxHops: number = 5,
   authHeaderNames: ReadonlyArray<string> = [],
+  allowInsecureHttp: boolean = false,
 ): Promise<{ status: number; headers: Record<string, any>; data: T }> {
-  ensureSecureUrl(config.url, context);
+  ensureSecureUrl(config.url, context, allowInsecureHttp);
 
   // Build a mutable working copy so we can strip credentials between
   // hops without mutating the caller's object. ``headers`` is shallow-
@@ -589,7 +623,13 @@ export async function safeRequestWithRedirects<T = any>(
     }
 
     const nextUrl = new URL(location, currentUrl).toString();
-    ensureSecureUrl(nextUrl, `${context} (redirect target)`);
+    // The plain-HTTP opt-in covers the origin the operator wrote in the call
+    // template, so a redirect keeps it only while it stays on that origin.
+    ensureSecureUrl(
+      nextUrl,
+      `${context} (redirect target)`,
+      allowInsecureHttp && sameOrigin(currentUrl, nextUrl),
+    );
     // Never follow a redirect INTO loopback from a non-loopback URL. The
     // loopback allowance in `ensureSecureUrl` exists for requests the
     // caller addressed to loopback (local development); a remote server

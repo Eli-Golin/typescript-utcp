@@ -1,6 +1,6 @@
 {
   "name": "@eli-golin/utcp-http",
-  "version": "1.1.15",
+  "version": "1.2.0",
   "description": "HTTP utilities for UTCP (maintained fork)",
   "main": "dist/index.cjs",
   "module": "dist/index.js",

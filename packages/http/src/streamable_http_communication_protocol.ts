@@ -11,7 +11,13 @@ import { UtcpManual, UtcpManualSerializer } from '@eli-golin/utcp-sdk';
 import { OAuth2Auth } from '@eli-golin/utcp-sdk';
 import { IUtcpClient } from '@eli-golin/utcp-sdk';
 import { StreamableHttpCallTemplate, StreamableHttpCallTemplateSchema } from './streamable_http_call_template';
-import { ensureSecureUrl, ensureLoopbackWasDeclared, assertNoCrlf, rejectRemoteLoopbackToolUrls } from './_security';
+import {
+  ensureSecureUrl,
+  ensureLoopbackWasDeclared,
+  assertNoCrlf,
+  rejectRemoteLoopbackToolUrls,
+  rejectUndeclaredInsecureHttpOptIn,
+} from './_security';
 import { applyAuth, finalizeAuthHeaders, fetchOAuth2Token, AuthLogger } from './_auth';
 import { readErrorDetail } from './_text';
 import { buildUrlWithPathParams } from './_url';
@@ -88,7 +94,7 @@ export class StreamableHttpCommunicationProtocol implements CommunicationProtoco
     const url = provider.url;
 
     // Security check: only HTTPS or loopback HTTP allowed for manual discovery.
-    ensureSecureUrl(url, 'manual discovery');
+    ensureSecureUrl(url, 'manual discovery', provider.allow_insecure_http === true);
 
     this._logInfo(`Discovering tools from '${provider.name}' (HTTP Stream) at ${url}`);
 
@@ -134,6 +140,7 @@ export class StreamableHttpCommunicationProtocol implements CommunicationProtoco
         // OAuth2 token POST, at the agent's own loopback interface. `redirect:
         // 'error'` above means `url` is the URL the manual really came from.
         rejectRemoteLoopbackToolUrls(url, utcpManual);
+        rejectUndeclaredInsecureHttpOptIn(url, utcpManual, provider.allow_insecure_http === true);
 
         this._logInfo(`Discovered ${utcpManual.tools.length} tools from '${provider.name}'`);
 
@@ -248,7 +255,7 @@ export class StreamableHttpCommunicationProtocol implements CommunicationProtoco
     const url = this._buildUrlWithPathParams(provider.url, remainingArgs);
 
     // Security check: re-validate the resolved URL before each invocation.
-    ensureSecureUrl(url, 'tool invocation');
+    ensureSecureUrl(url, 'tool invocation', provider.allow_insecure_http === true);
     // A loopback destination must be written in the template itself: a
     // placeholder in the host (`http://{host}:7777/admin`) would let the
     // tool's arguments move the request onto the agent's own interface

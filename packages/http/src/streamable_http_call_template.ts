@@ -36,6 +36,8 @@ export interface StreamableHttpCallTemplate extends CallTemplate {
   body_field?: string | null;
   header_fields?: string[] | null;
   allowed_communication_protocols?: string[];
+  /** Allow plain `http://` to a non-loopback host. Off by default; see `ensureSecureUrl`. */
+  allow_insecure_http?: boolean;
 }
 
 /**
@@ -54,6 +56,7 @@ export const StreamableHttpCallTemplateSchema: z.ZodType<StreamableHttpCallTempl
   body_field: z.string().nullable().optional().describe('The name of the single input field to be sent as the request body.'),
   header_fields: z.array(z.string()).nullable().optional().describe('List of input fields to be sent as request headers.'),
   allowed_communication_protocols: z.array(z.string()).optional().describe('Optional list of allowed communication protocol types for tools within this manual.'),
+  allow_insecure_http: z.boolean().optional().describe('Allow plain http:// to a non-loopback host (a LAN service without TLS). Off by default: requests then travel unencrypted, so enable it only for hosts on a network path you trust.'),
 }) as z.ZodType<StreamableHttpCallTemplate>;
 
 /**
@@ -79,6 +82,7 @@ export class StreamableHttpCallTemplateSerializer extends Serializer<StreamableH
       body_field: obj.body_field,
       header_fields: obj.header_fields,
       allowed_communication_protocols: obj.allowed_communication_protocols,
+      allow_insecure_http: obj.allow_insecure_http,
     };
   }
 

@@ -19,6 +19,7 @@ import {
   safeRequestWithRedirects,
   assertNoCrlf,
   rejectRemoteLoopbackToolUrls,
+  rejectUndeclaredInsecureHttpOptIn,
 } from './_security';
 import { truncateByCodePoint, collapseControlChars } from './_text';
 import { buildUrlWithPathParams } from './_url';
@@ -62,8 +63,10 @@ export class HttpCommunicationProtocol implements CommunicationProtocol {
     try {
       const url = httpCallTemplate.url;
 
-      // Security check: only HTTPS or loopback HTTP allowed for manual discovery.
-      ensureSecureUrl(url, 'manual discovery');
+      // Security check: only HTTPS or loopback HTTP allowed for manual discovery,
+      // unless the call template opts into plain HTTP (`allow_insecure_http`).
+      const allowInsecureHttp = httpCallTemplate.allow_insecure_http === true;
+      ensureSecureUrl(url, 'manual discovery', allowInsecureHttp);
 
       this._logInfo(`Discovering tools from '${httpCallTemplate.name}' (HTTP) at ${url}`);
 
@@ -89,6 +92,7 @@ export class HttpCommunicationProtocol implements CommunicationProtocol {
         'manual discovery',
         undefined,
         authHeaderNames,
+        allowInsecureHttp,
       );
       const contentType = response.headers['content-type'] || '';
       let responseData: any;
@@ -113,13 +117,15 @@ export class HttpCommunicationProtocol implements CommunicationProtocol {
         this._logInfo(`Detected UTCP manual from '${httpCallTemplate.name}'.`);
         utcpManual = UtcpManualSchema.parse(responseData);
         this._rejectRemoteLoopbackToolUrls(finalUrl, utcpManual);
+        rejectUndeclaredInsecureHttpOptIn(finalUrl, utcpManual, allowInsecureHttp);
       } else if (responseData && (responseData.openapi || responseData.swagger || responseData.paths)) {
         this._logInfo(`Assuming OpenAPI spec from '${httpCallTemplate.name}'. Converting to UTCP manual.`);
         const converter = new OpenApiConverter(responseData, {
           specUrl: finalUrl,
           callTemplateName: httpCallTemplate.name,
           authTools: httpCallTemplate.auth_tools,
-          headers: httpCallTemplate.headers
+          headers: httpCallTemplate.headers,
+          allowInsecureHttp,
         });
         utcpManual = converter.convert();
       } else {
@@ -197,7 +203,8 @@ export class HttpCommunicationProtocol implements CommunicationProtocol {
     // Defends against SSRF via attacker-controlled OpenAPI specs that point
     // `servers[0].url` at internal services. See GHSA-39j6-4867-gg4w /
     // CVE-2026-44661.
-    ensureSecureUrl(url, 'tool invocation');
+    const allowInsecureHttp = httpCallTemplate.allow_insecure_http === true;
+    ensureSecureUrl(url, 'tool invocation', allowInsecureHttp);
     // A loopback destination must be written in the template itself: a
     // placeholder in the host (`http://{host}:7777/admin`) would let the
     // tool's arguments move the request onto the agent's own interface
@@ -237,6 +244,7 @@ export class HttpCommunicationProtocol implements CommunicationProtocol {
         'tool invocation',
         undefined,
         authHeaderNames,
+        allowInsecureHttp,
       );
 
       const contentType = response.headers['content-type'] || '';

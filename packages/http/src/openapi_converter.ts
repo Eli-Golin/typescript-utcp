@@ -58,6 +58,11 @@ export interface OpenApiConverterOptions {
   authTools?: Auth | null;
   baseUrl?: string;
   /**
+   * Copy `allow_insecure_http: true` onto every generated tool call template.
+   * Set only from the operator's own call template that fetched the spec.
+   */
+  allowInsecureHttp?: boolean;
+  /**
    * Static headers to include in all generated tool call templates.
    * These headers will be sent with every tool request.
    */
@@ -79,6 +84,7 @@ export class OpenApiConverter {
   private base_url: string | undefined;
   private auth_tools: Auth | null | undefined;
   private headers: Record<string, string> | undefined;
+  private allow_insecure_http: boolean;
   private placeholder_counter: number = 0;
   private call_template_name: string;
 
@@ -98,6 +104,7 @@ export class OpenApiConverter {
     this.base_url = options?.baseUrl;
     this.auth_tools = options?.authTools;
     this.headers = options?.headers;
+    this.allow_insecure_http = options?.allowInsecureHttp === true;
     this.placeholder_counter = 0;
 
     let callTemplateName = options?.callTemplateName;
@@ -464,7 +471,8 @@ export class OpenApiConverter {
       headers: this.headers,
       auth,
       content_type: 'application/json',
-      timeout: 30
+      timeout: 30,
+      ...(this.allow_insecure_http ? { allow_insecure_http: true } : {}),
     };
 
     return {
